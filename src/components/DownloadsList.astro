@@ -1,0 +1,125 @@
+---
+import {
+  fetchLatestRelease,
+  formatFileSize,
+  formatReleaseDate,
+  type ReleaseAsset,
+} from '../lib/releases';
+
+interface Props {
+  repo: string;
+  accentColor?: string;
+}
+
+const { repo, accentColor = '#fe8b00' } = Astro.props;
+const token = import.meta.env.GITHUB_TOKEN;
+const result = await fetchLatestRelease(repo, token);
+const fallbackUrl = `https://github.com/${repo}/releases`;
+
+const platformGroups =
+  result.status === 'ok'
+    ? [
+        { label: 'macOS (Apple Silicon)', assets: result.assets.macAppleSilicon },
+        { label: 'macOS (Intel)', assets: result.assets.macIntel },
+        { label: 'Windows', assets: result.assets.windows },
+        { label: 'Linux (AppImage)', assets: result.assets.linuxAppImage },
+        { label: 'Linux (.deb)', assets: result.assets.linuxDeb },
+        { label: 'Linux (.rpm)', assets: result.assets.linuxRpm },
+      ].filter((g) => g.assets.length > 0)
+    : [];
+---
+
+<!-- Desktop downloads -->
+<div class="mt-10 pt-10 section-rule">
+  <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
+    Desktop
+  </h2>
+
+  {result.status === 'no-releases' && (
+    <p class="font-sans text-sm text-glance-muted">
+      No desktop downloads available yet.
+    </p>
+  )}
+
+  {result.status === 'error' && (
+    <p class="font-sans text-sm text-glance-muted">
+      Could not load release information.{' '}
+      <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" class="text-glance-accent link-underline">
+        View releases on GitHub →
+      </a>
+    </p>
+  )}
+
+  {result.status === 'ok' && platformGroups.length === 0 && (
+    <p class="font-sans text-sm text-glance-muted">
+      No desktop packages in the latest release.{' '}
+      <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" class="text-glance-accent link-underline">
+        View all releases on GitHub →
+      </a>
+    </p>
+  )}
+
+  {result.status === 'ok' && platformGroups.length > 0 && (
+    <div class="space-y-1">
+      {platformGroups.map(({ label, assets }) =>
+        assets.map((asset: ReleaseAsset) => (
+          <div class="flex items-center justify-between gap-4 py-3 border-b border-glance-border-dim last:border-0">
+            <div class="min-w-0">
+              <p class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-0.5">
+                {label}
+              </p>
+              <p class="text-sm font-sans text-glance-muted truncate">{asset.name}</p>
+            </div>
+            <div class="flex items-center gap-4 shrink-0">
+              <span class="text-xs font-sans text-glance-dim hidden sm:block">
+                {formatFileSize(asset.size)}
+              </span>
+              <a
+                href={asset.browser_download_url}
+                download
+                class="inline-flex items-center gap-1.5 text-xs font-sans font-semibold border border-glance-border rounded-md px-3 py-1.5 text-glance-muted hover:text-glance-text hover:border-glance-muted transition-colors duration-150"
+              >
+                <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true">
+                  <path d="M7.47 10.78a.75.75 0 0 0 1.06 0l3.75-3.75a.75.75 0 0 0-1.06-1.06L8.75 8.44V1.75a.75.75 0 0 0-1.5 0v6.69L4.78 5.97a.75.75 0 0 0-1.06 1.06l3.75 3.75ZM3.75 13a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z"/>
+                </svg>
+                Download
+              </a>
+            </div>
+          </div>
+        ))
+      )}
+    </div>
+  )}
+</div>
+
+<!-- Version info -->
+{result.status === 'ok' && (
+  <div class="mt-10 pt-10 section-rule">
+    <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+      Version
+    </h2>
+    <dl class="space-y-2 font-sans text-sm">
+      <div class="flex gap-6">
+        <dt class="text-glance-dim w-24 shrink-0">Release</dt>
+        <dd class="text-glance-muted">{result.release.tag_name}</dd>
+      </div>
+      <div class="flex gap-6">
+        <dt class="text-glance-dim w-24 shrink-0">Published</dt>
+        <dd class="text-glance-muted">{formatReleaseDate(result.release.published_at)}</dd>
+      </div>
+      <div class="flex gap-6">
+        <dt class="text-glance-dim w-24 shrink-0">Notes</dt>
+        <dd>
+          <a
+            href={result.release.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-glance-accent link-underline"
+          >
+            View on GitHub →
+          </a>
+        </dd>
+      </div>
+    </dl>
+  </div>
+)}

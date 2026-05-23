@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import DownloadsList from '../../../components/DownloadsList.astro';
+---
+
+<BaseLayout
+  title="dayGLANCE Downloads"
+  description="Download dayGLANCE for Android, macOS, Windows, Linux, and the web."
+>
+  <article class="max-w-2xl mx-auto px-6 py-20 md:py-28">
+    <!-- Breadcrumb -->
+    <nav class="mb-10 font-sans text-sm text-glance-dim" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-glance-muted transition-colors">GLANCE Apps</a>
+      <span class="mx-2">/</span>
+      <a href="/apps/dayglance" class="hover:text-glance-muted transition-colors">dayGLANCE</a>
+      <span class="mx-2">/</span>
+      <span class="text-glance-muted">Downloads</span>
+    </nav>
+
+    <h1 class="font-serif text-4xl md:text-5xl font-semibold leading-none mb-4">
+      <span class="text-glance-muted font-medium">day</span><span class="text-glance-accent tracking-wider font-bold">GLANCE</span>
+    </h1>
+    <p class="text-xl text-glance-muted font-serif italic mb-2">Your day, at a glance.</p>
+    <p class="font-sans text-sm text-glance-dim mb-10">
+      Available on Android, macOS, Windows, Linux, and the web.
+    </p>
+
+    <!-- Mobile -->
+    <div class="pt-2">
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
+        Mobile
+      </h2>
+      <div class="flex flex-wrap items-center gap-4">
+        {/* TODO: replace href with Play Store listing URL once published */}
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Get it on Google Play"
+        >
+          <img
+            src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+            alt="Get it on Google Play"
+            width="155"
+            height="60"
+            class="h-[60px] w-auto"
+          />
+        </a>
+      </div>
+    </div>
+
+    <!-- Desktop (fetched from GitHub) -->
+    <DownloadsList repo="krelltunez/dayGLANCE" accentColor="#fe8b00" />
+
+    <!-- Web -->
+    <div class="mt-10 pt-10 section-rule">
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
+        Web
+      </h2>
+      <p class="font-sans text-sm text-glance-muted mb-3">
+        No install required. Open dayGLANCE in any modern browser.
+      </p>
+      <a
+        href="https://dayglance.app"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-sans text-sm text-glance-accent link-underline"
+      >
+        Open dayglance.app →
+      </a>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import DownloadsList from '../../../components/DownloadsList.astro';
+---
+
+<BaseLayout
+  title="lifeGLANCE Downloads"
+  description="Download lifeGLANCE for macOS, Windows, Linux, and the web."
+>
+  <article class="max-w-2xl mx-auto px-6 py-20 md:py-28">
+    <!-- Breadcrumb -->
+    <nav class="mb-10 font-sans text-sm text-glance-dim" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-glance-muted transition-colors">GLANCE Apps</a>
+      <span class="mx-2">/</span>
+      <a href="/apps/lifeglance" class="hover:text-glance-muted transition-colors">lifeGLANCE</a>
+      <span class="mx-2">/</span>
+      <span class="text-glance-muted">Downloads</span>
+    </nav>
+
+    <h1 class="font-serif text-4xl md:text-5xl font-semibold leading-none mb-4">
+      <span class="text-glance-muted font-medium">life</span><span style="color: #7b70db;" class="tracking-wider font-bold">GLANCE</span>
+    </h1>
+    <p class="text-xl text-glance-muted font-serif italic mb-2">Your life, at a glance.</p>
+    <p class="font-sans text-sm text-glance-dim mb-10">
+      Available on macOS, Windows, Linux, and the web.
+    </p>
+
+    <!-- Desktop (fetched from GitHub) -->
+    <DownloadsList repo="krelltunez/lifeGLANCE" accentColor="#7b70db" />
+
+    <!-- Web -->
+    <div class="mt-10 pt-10 section-rule">
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
+        Web
+      </h2>
+      <p class="font-sans text-sm text-glance-muted mb-3">
+        No install required. Open lifeGLANCE in any modern browser.
+      </p>
+      <a
+        href="https://lifeglance.app"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-sans text-sm text-glance-accent link-underline"
+      >
+        Open lifeglance.app →
+      </a>
+    </div>
+  </article>
+</BaseLayout>

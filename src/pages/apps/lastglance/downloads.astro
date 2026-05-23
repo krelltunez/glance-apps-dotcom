@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import DownloadsList from '../../../components/DownloadsList.astro';
+---
+
+<BaseLayout
+  title="lastGLANCE Downloads"
+  description="lastGLANCE is coming soon. Downloads will appear here when released."
+>
+  <article class="max-w-2xl mx-auto px-6 py-20 md:py-28">
+    <!-- Breadcrumb -->
+    <nav class="mb-10 font-sans text-sm text-glance-dim" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-glance-muted transition-colors">GLANCE Apps</a>
+      <span class="mx-2">/</span>
+      <a href="/apps/lastglance" class="hover:text-glance-muted transition-colors">lastGLANCE</a>
+      <span class="mx-2">/</span>
+      <span class="text-glance-muted">Downloads</span>
+    </nav>
+
+    <div class="mb-4 inline-flex items-center gap-2">
+      <span class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim border border-glance-border-dim rounded-full px-3 py-1 bg-glance-surface">
+        Coming soon
+      </span>
+    </div>
+
+    <h1 class="font-serif text-4xl md:text-5xl font-semibold leading-none mb-4">
+      <span class="text-glance-muted font-medium">last</span><span style="color: #3DDB84;" class="tracking-wider font-bold">GLANCE</span>
+    </h1>
+    <p class="text-xl text-glance-muted font-serif italic mb-2">Something new is coming.</p>
+    <p class="font-sans text-sm text-glance-dim mb-10">
+      Downloads will appear here when lastGLANCE launches.
+    </p>
+
+    <!-- Downloads (will show "no releases" state until first release is published) -->
+    <DownloadsList repo="krelltunez/lastGLANCE" accentColor="#3DDB84" />
+  </article>
+</BaseLayout>
