@@ -10,6 +10,7 @@ interface Props {
   externalLabel?: string;
   status?: 'live' | 'coming-soon';
   accentColor?: string;
+  icon?: string;
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   externalLabel,
   status = 'live',
   accentColor = '#fe8b00',
+  icon,
 } = Astro.props;
 
 const isLive = status === 'live';
@@ -31,14 +33,25 @@ const isLive = status === 'live';
   class="group relative bg-glance-surface border border-glance-border-dim rounded-xl p-7 flex flex-col gap-5 hover:border-glance-border transition-all duration-200 hover:bg-glance-elevated"
 >
   <div class="flex items-start justify-between gap-4">
-    <div>
-      <h3 class="font-serif text-xl font-semibold text-glance-text leading-none">
-        <span class="text-glance-muted font-medium">{prefix}</span><span
-          class="wordmark-glance tracking-wider"
-          style={`color: ${accentColor}`}>{suffix}</span
-        >
-      </h3>
-      <p class="mt-2 text-sm font-sans text-glance-muted">{tagline}</p>
+    <div class="flex items-center gap-4">
+      {icon && (
+        <img
+          src={icon}
+          alt={`${prefix}${suffix} icon`}
+          width="52"
+          height="52"
+          class="rounded-xl shrink-0"
+        />
+      )}
+      <div>
+        <h3 class="font-serif text-xl font-semibold text-glance-text leading-none">
+          <span class="text-glance-muted font-medium">{prefix}</span><span
+            class="wordmark-glance tracking-wider"
+            style={`color: ${accentColor}`}>{suffix}</span
+          >
+        </h3>
+        <p class="mt-2 text-sm font-sans text-glance-muted">{tagline}</p>
+      </div>
     </div>
 
     {!isLive && (
