@@ -54,7 +54,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
           </p>
           <a
             href="mailto:hello@glance-apps.com?subject=lastGLANCE%20interest"
-            class="font-sans text-sm text-glance-accent link-underline"
+            class="font-sans text-sm last-accent-link"
           >
             Contact us to stay informed →
           </a>
@@ -65,10 +65,23 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     <div class="mt-16 pt-10 section-rule">
       <p class="font-sans text-sm text-glance-dim">
         In the meantime, explore our existing apps:
-        <a href="/apps/dayglance" class="text-glance-accent link-underline ml-1">dayGLANCE</a>
+        <a href="/apps/dayglance" class="last-accent-link ml-1">dayGLANCE</a>
         <span class="mx-2 text-glance-border">·</span>
-        <a href="/apps/lifeglance" class="text-glance-accent link-underline">lifeGLANCE</a>
+        <a href="/apps/lifeglance" class="last-accent-link">lifeGLANCE</a>
       </p>
     </div>
   </article>
 </BaseLayout>
+
+<style>
+  .last-accent-link {
+    color: #3DDB84;
+    text-decoration: underline;
+    text-decoration-color: #3DDB8440;
+    text-underline-offset: 3px;
+    transition: color 0.15s, text-decoration-color 0.15s;
+  }
+  .last-accent-link:hover {
+    text-decoration-color: #3DDB84;
+  }
+</style>
