@@ -29,6 +29,8 @@ const platformGroups =
     : [];
 ---
 
+<div style={`--dl-accent: ${accentColor};`}>
+
 <!-- Desktop downloads -->
 <div class="mt-10 pt-10 section-rule">
   <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
@@ -44,7 +46,7 @@ const platformGroups =
   {result.status === 'error' && (
     <p class="font-sans text-sm text-glance-muted">
       Could not load release information.{' '}
-      <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" class="text-glance-accent link-underline">
+      <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" class="dl-accent-link">
         View releases on GitHub →
       </a>
     </p>
@@ -53,7 +55,7 @@ const platformGroups =
   {result.status === 'ok' && platformGroups.length === 0 && (
     <p class="font-sans text-sm text-glance-muted">
       No desktop packages in the latest release.{' '}
-      <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" class="text-glance-accent link-underline">
+      <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" class="dl-accent-link">
         View all releases on GitHub →
       </a>
     </p>
@@ -114,7 +116,7 @@ const platformGroups =
             href={result.release.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-glance-accent link-underline"
+            class="dl-accent-link"
           >
             View on GitHub →
           </a>
@@ -123,3 +125,18 @@ const platformGroups =
     </dl>
   </div>
 )}
+
+</div>
+
+<style>
+  .dl-accent-link {
+    color: var(--dl-accent);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--dl-accent) 25%, transparent);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s;
+  }
+  .dl-accent-link:hover {
+    text-decoration-color: var(--dl-accent);
+  }
+</style>
