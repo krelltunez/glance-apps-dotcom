@@ -49,7 +49,6 @@ export function categorizeAssets(assets: ReleaseAsset[]): CategorizedAssets {
   return {
     macAppleSilicon: filtered.filter((a) => IS_MAC.test(a.name) && IS_ARM64.test(a.name)),
     macIntel:        filtered.filter((a) => IS_MAC.test(a.name) && !IS_ARM64.test(a.name)),
-    ),
     windows: filtered.filter((a) => /\.exe$|\.msi$|win.*\.(exe|msi|zip)$/i.test(a.name)),
     linuxAppImage: filtered.filter((a) => /\.AppImage$/i.test(a.name)),
     linuxDeb: filtered.filter((a) => /\.deb$/i.test(a.name)),
