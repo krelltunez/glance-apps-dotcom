@@ -20,7 +20,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <span class="text-glance-muted font-medium">day</span><span class="text-glance-accent tracking-wider font-bold">GLANCE</span>
         </h1>
         <p class="text-xl text-glance-muted font-serif italic mb-8">
-          See your day clearly.
+          Your day, at a glance.
         </p>
 
         <div class="space-y-5 text-glance-muted font-serif text-lg leading-relaxed mb-10">
@@ -37,14 +37,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         </div>
 
         <div class="flex flex-wrap items-center gap-4">
-          <a
-            href="https://dayglance.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 bg-glance-accent text-glance-bg font-sans text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-glance-accent-dim transition-colors duration-150"
-          >
-            Visit dayglance.app ↗
-          </a>
           {/* TODO: replace href with Play Store listing URL once published */}
           <a
             href="#"
@@ -59,6 +51,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
               height="60"
               class="h-[42px] w-auto"
             />
+          </a>
+          <a
+            href="https://dayglance.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-sans text-sm text-glance-muted hover:text-glance-text transition-colors duration-150"
+          >
+            Visit dayglance.app →
           </a>
         </div>
       </div>
