@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import DownloadsList from '../../../components/DownloadsList.astro';
 ---
 
 <BaseLayout
@@ -23,6 +24,9 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     <p class="font-sans text-sm text-glance-dim mb-10">
       Available on the web.
     </p>
+
+    <!-- Desktop (fetched from GitHub) -->
+    <DownloadsList repo="krelltunez/lifeGLANCE" accentColor="#7b70db" />
 
     <!-- Web -->
     <div class="pt-2">
