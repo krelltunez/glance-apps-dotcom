@@ -16,6 +16,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     </nav>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+      <!-- Left column -->
       <div>
         <h1 class="font-serif text-5xl md:text-6xl font-semibold leading-none mb-4">
           <span class="text-glance-muted font-medium">life</span><span style="color: #7b70db;" class="tracking-wider font-bold">GLANCE</span>
@@ -24,7 +25,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
           Your life, at a glance.
         </p>
 
-        <div class="space-y-5 text-glance-muted font-serif text-lg leading-relaxed mb-10">
+        <div class="space-y-5 text-glance-muted font-serif text-lg leading-relaxed mb-6">
           <p>
             Most life-tracking apps turn your goals into a to-do list. lifeGLANCE
             takes a different approach: it helps you see the shape of your life
@@ -37,26 +38,34 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
           </p>
         </div>
 
-        <div class="flex flex-wrap items-center gap-4">
+        <!-- Platforms -->
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6 mb-8">
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-3">
+            Platforms
+          </h2>
+          <p class="font-sans text-sm text-glance-muted">Web · Android · macOS · Windows · Linux · iOS (soon)</p>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-6">
+          <a
+            href="/apps/lifeglance/downloads"
+            class="font-sans text-sm text-glance-muted hover:text-glance-accent transition-colors duration-150"
+          >
+            All downloads →
+          </a>
           <a
             href="https://lifeglance.app"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 font-sans text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors duration-150"
-            style="background-color: #7b70db; color: #0D0D12;"
+            class="font-sans text-sm text-glance-muted hover:text-glance-accent transition-colors duration-150"
           >
-            Visit lifeglance.app ↗
-          </a>
-          <a
-            href="/apps/lifeglance/downloads"
-            class="font-sans text-sm text-glance-muted hover:text-glance-text transition-colors duration-150"
-            style="color: #7b70db80;"
-          >
-            All downloads →
+            Visit lifeglance.app →
           </a>
         </div>
       </div>
 
+      <!-- Right column -->
       <div class="space-y-6">
         <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
           <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-5">
@@ -81,23 +90,38 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
             </li>
           </ul>
         </div>
-
-        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
-          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
-            Platforms
-          </h2>
-          <p class="font-sans text-sm text-glance-muted">Web · Android · macOS · Windows · Linux · iOS (soon)</p>
-        </div>
       </div>
     </div>
 
     <div class="mt-16 pt-10 section-rule">
       <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
+        Open Source
+      </h2>
+      <p class="font-sans text-sm text-glance-muted max-w-xl leading-relaxed mb-4">
+        lifeGLANCE is open source under the MIT License. Self-host the web app,
+        build from source, or audit the code. Purchases on the app stores support
+        continued development.
+      </p>
+      <a
+        href="https://github.com/krelltunez/lifeGLANCE"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-sm font-sans text-glance-accent link-underline"
+      >
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" class="shrink-0 opacity-75">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View on GitHub →
+      </a>
+    </div>
+
+    <div class="mt-10 pt-10 section-rule">
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
         Privacy
       </h2>
       <p class="font-sans text-sm text-glance-muted max-w-xl leading-relaxed mb-4">
-        lifeGLANCE stores all your data locally on your device. No account
-        required. No data sent to our servers. Your life overview is yours.
+        lifeGLANCE stores your data locally on your device. No account required.
+        No data leaves your device without your direction. Your data remains yours.
       </p>
       <a href="/privacy" class="font-sans text-sm text-glance-accent link-underline">
         Privacy policy →
