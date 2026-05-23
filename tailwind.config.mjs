@@ -20,9 +20,9 @@ export default {
           text:         '#E6E0D4',
           muted:        '#8C8799',
           dim:          '#5A5568',
-          accent:       '#C49A6C',
-          'accent-dim': '#A07A4E',
-          link:         '#BF9460',
+          accent:       '#fe8b00',
+          'accent-dim': '#d97600',
+          link:         '#fe8b00',
         },
       },
       typography: (theme) => ({

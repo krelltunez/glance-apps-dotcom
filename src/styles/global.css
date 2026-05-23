@@ -10,12 +10,12 @@
   }
 
   ::selection {
-    background-color: #C49A6C30;
+    background-color: #fe8b0030;
     color: #E6E0D4;
   }
 
   :focus-visible {
-    outline: 2px solid #C49A6C;
+    outline: 2px solid #fe8b00;
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -44,12 +44,12 @@
 
   .link-underline {
     text-decoration: underline;
-    text-decoration-color: #C49A6C40;
+    text-decoration-color: #fe8b0040;
     text-underline-offset: 3px;
     transition: text-decoration-color 0.15s;
   }
 
   .link-underline:hover {
-    text-decoration-color: #C49A6C;
+    text-decoration-color: #fe8b00;
   }
 }
