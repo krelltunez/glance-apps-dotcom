@@ -2,7 +2,7 @@
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
-  readonly GH_TOKEN?: string;
+  readonly GHTOKEN?: string;
 }
 
 interface ImportMeta {
