@@ -41,15 +41,14 @@ export function formatReleaseDate(isoString: string): string {
 }
 
 const EXCLUDE = /\.apk$|source\.(tar\.gz|zip)$/i;
+const IS_MAC = /\.dmg$|-mac\.|darwin/i;
+const IS_ARM64 = /arm64/i;
 
 export function categorizeAssets(assets: ReleaseAsset[]): CategorizedAssets {
   const filtered = assets.filter((a) => !EXCLUDE.test(a.name));
   return {
-    macAppleSilicon: filtered.filter((a) =>
-      /(mac|darwin).*arm64|arm64.*(mac|darwin)/i.test(a.name)
-    ),
-    macIntel: filtered.filter((a) =>
-      /(mac|darwin).*(x64|intel|x86_64)|(x64|intel|x86_64).*(mac|darwin)/i.test(a.name)
+    macAppleSilicon: filtered.filter((a) => IS_MAC.test(a.name) && IS_ARM64.test(a.name)),
+    macIntel:        filtered.filter((a) => IS_MAC.test(a.name) && !IS_ARM64.test(a.name)),
     ),
     windows: filtered.filter((a) => /\.exe$|\.msi$|win.*\.(exe|msi|zip)$/i.test(a.name)),
     linuxAppImage: filtered.filter((a) => /\.AppImage$/i.test(a.name)),
