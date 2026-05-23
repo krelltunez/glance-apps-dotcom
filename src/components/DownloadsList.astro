@@ -12,7 +12,7 @@ interface Props {
 }
 
 const { repo, accentColor = '#fe8b00' } = Astro.props;
-const token = import.meta.env.GHTOKEN;
+const token = import.meta.env.GITHUB_TOKEN;
 const result = await fetchLatestRelease(repo, token);
 const fallbackUrl = `https://github.com/${repo}/releases`;
 
