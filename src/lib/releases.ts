@@ -44,11 +44,16 @@ const EXCLUDE = /\.apk$|source\.(tar\.gz|zip)$/i;
 const IS_MAC = /\.dmg$|-mac\.|darwin/i;
 const IS_ARM64 = /arm64/i;
 
+function preferDmg(assets: ReleaseAsset[]): ReleaseAsset[] {
+  const hasDmg = assets.some((a) => /\.dmg$/i.test(a.name));
+  return hasDmg ? assets.filter((a) => /\.dmg$/i.test(a.name)) : assets;
+}
+
 export function categorizeAssets(assets: ReleaseAsset[]): CategorizedAssets {
   const filtered = assets.filter((a) => !EXCLUDE.test(a.name));
   return {
-    macAppleSilicon: filtered.filter((a) => IS_MAC.test(a.name) && IS_ARM64.test(a.name)),
-    macIntel:        filtered.filter((a) => IS_MAC.test(a.name) && !IS_ARM64.test(a.name)),
+    macAppleSilicon: preferDmg(filtered.filter((a) => IS_MAC.test(a.name) && IS_ARM64.test(a.name))),
+    macIntel:        preferDmg(filtered.filter((a) => IS_MAC.test(a.name) && !IS_ARM64.test(a.name))),
     windows: filtered.filter((a) => /\.exe$|\.msi$|win.*\.(exe|msi|zip)$/i.test(a.name)),
     linuxAppImage: filtered.filter((a) => /\.AppImage$/i.test(a.name)),
     linuxDeb: filtered.filter((a) => /\.deb$/i.test(a.name)),
