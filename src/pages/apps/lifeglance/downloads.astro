@@ -1,11 +1,10 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import DownloadsList from '../../../components/DownloadsList.astro';
 ---
 
 <BaseLayout
   title="lifeGLANCE Downloads"
-  description="Download lifeGLANCE for macOS, Windows, Linux, and the web."
+  description="Open lifeGLANCE in any modern browser. No install required."
 >
   <article class="max-w-2xl mx-auto px-6 py-20 md:py-28">
     <!-- Breadcrumb -->
@@ -22,14 +21,11 @@ import DownloadsList from '../../../components/DownloadsList.astro';
     </h1>
     <p class="text-xl text-glance-muted font-serif italic mb-2">Your life, at a glance.</p>
     <p class="font-sans text-sm text-glance-dim mb-10">
-      Available on macOS, Windows, Linux, and the web.
+      Available on the web.
     </p>
 
-    <!-- Desktop (fetched from GitHub) -->
-    <DownloadsList repo="krelltunez/lifeGLANCE" accentColor="#7b70db" />
-
     <!-- Web -->
-    <div class="mt-10 pt-10 section-rule">
+    <div class="pt-2">
       <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
         Web
       </h2>
@@ -40,13 +36,26 @@ import DownloadsList from '../../../components/DownloadsList.astro';
         href="https://lifeglance.app"
         target="_blank"
         rel="noopener noreferrer"
-        class="font-sans text-sm text-glance-accent link-underline"
+        class="font-sans text-sm life-accent-link"
       >
         Open lifeglance.app →
       </a>
       <p class="font-sans text-sm text-glance-muted mt-3">
-        Or self-host: see <a href="https://github.com/krelltunez/lifeGLANCE#readme" target="_blank" rel="noopener noreferrer" class="text-glance-accent link-underline">GitHub</a> for setup instructions.
+        Or self-host: see <a href="https://github.com/krelltunez/lifeGLANCE#readme" target="_blank" rel="noopener noreferrer" class="life-accent-link">GitHub</a> for setup instructions.
       </p>
     </div>
   </article>
 </BaseLayout>
+
+<style>
+  .life-accent-link {
+    color: #7b70db;
+    text-decoration: underline;
+    text-decoration-color: #7b70db40;
+    text-underline-offset: 3px;
+    transition: color 0.15s, text-decoration-color 0.15s;
+  }
+  .life-accent-link:hover {
+    text-decoration-color: #7b70db;
+  }
+</style>
