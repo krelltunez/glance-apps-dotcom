@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AppCard from '../components/AppCard.astro';
+
+const apps = [
+  {
+    name: 'dayGLANCE',
+    prefix: 'day',
+    suffix: 'GLANCE',
+    tagline: 'See your day clearly.',
+    description:
+      "A calm daily planner for morning intentions, quiet notes, and evening reflection. Everything you need for a focused day—nothing you don't.",
+    href: '/apps/dayglance',
+    externalHref: 'https://dayglance.app',
+    externalLabel: 'dayglance.app',
+    status: 'live',
+    accentColor: '#C49A6C',
+  },
+  {
+    name: 'lifeGLANCE',
+    prefix: 'life',
+    suffix: 'GLANCE',
+    tagline: 'Your life, at a glance.',
+    description:
+      'A personal dashboard for the things that matter most. Goals, habits, milestones—curated, not cluttered. Step back and see the shape of your life.',
+    href: '/apps/lifeglance',
+    externalHref: 'https://lifeglance.app',
+    externalLabel: 'lifeglance.app',
+    status: 'live',
+    accentColor: '#7EB8A4',
+  },
+  {
+    name: 'lastGLANCE',
+    prefix: 'last',
+    suffix: 'GLANCE',
+    tagline: 'Something new is coming.',
+    description:
+      'The next app in the GLANCE family is in development. Sign up to be the first to know when it arrives.',
+    href: '/apps/lastglance',
+    status: 'coming-soon',
+    accentColor: '#9B8EC4',
+  },
+] as const;
+---
+
+<BaseLayout
+  title="GLANCE Apps"
+  description="Thoughtful apps for everyday clarity. GLANCE Apps makes calm, focused tools for iOS."
+>
+  <!-- Hero -->
+  <section class="max-w-5xl mx-auto px-6 pt-24 pb-20 md:pt-32 md:pb-28">
+    <div class="max-w-2xl">
+      <p class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-accent mb-6">
+        A small indie studio
+      </p>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-glance-text leading-[1.1] mb-6">
+        Thoughtful apps for everyday clarity.
+      </h1>
+      <p class="text-lg md:text-xl text-glance-muted font-serif leading-relaxed max-w-xl">
+        We make calm, focused apps for iOS that give you room to breathe—and
+        room to think.
+      </p>
+    </div>
+  </section>
+
+  <!-- Apps -->
+  <section class="section-rule">
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-10">
+        Our Apps
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {apps.map((app) => (
+          <AppCard {...app} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="section-rule">
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+      <div class="max-w-xl">
+        <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-8">
+          Our Philosophy
+        </h2>
+        <div class="space-y-5 text-glance-muted font-serif text-lg leading-relaxed">
+          <p>
+            Every GLANCE app is built around one question: <em class="text-glance-text not-italic">does this deserve your attention?</em>
+          </p>
+          <p>
+            We believe the best tools disappear into your routine. They don't demand
+            your time—they give it back to you. We build with restraint, ship
+            deliberately, and iterate based on what users actually need.
+          </p>
+          <p>
+            One developer. Real care. Made for iOS.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

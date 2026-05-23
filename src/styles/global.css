@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    background-color: #0D0D12;
+    color: #E6E0D4;
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    background-color: #C49A6C30;
+    color: #E6E0D4;
+  }
+
+  :focus-visible {
+    outline: 2px solid #C49A6C;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .wordmark {
+    font-family: 'Lora Variable', Lora, serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .wordmark-app {
+    font-family: 'Lora Variable', Lora, serif;
+    font-weight: 500;
+  }
+
+  .wordmark-glance {
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .section-rule {
+    border-top: 1px solid #2A2A3A;
+  }
+
+  .link-underline {
+    text-decoration: underline;
+    text-decoration-color: #C49A6C40;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s;
+  }
+
+  .link-underline:hover {
+    text-decoration-color: #C49A6C;
+  }
+}

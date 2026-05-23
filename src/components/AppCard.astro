@@ -1,0 +1,71 @@
+---
+interface Props {
+  name: string;
+  prefix: string;
+  suffix: string;
+  tagline: string;
+  description: string;
+  href: string;
+  externalHref?: string;
+  externalLabel?: string;
+  status?: 'live' | 'coming-soon';
+  accentColor?: string;
+}
+
+const {
+  prefix,
+  suffix,
+  tagline,
+  description,
+  href,
+  externalHref,
+  externalLabel,
+  status = 'live',
+  accentColor = '#C49A6C',
+} = Astro.props;
+
+const isLive = status === 'live';
+---
+
+<article
+  class="group relative bg-glance-surface border border-glance-border-dim rounded-xl p-7 flex flex-col gap-5 hover:border-glance-border transition-all duration-200 hover:bg-glance-elevated"
+>
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <h3 class="font-serif text-xl font-semibold text-glance-text leading-none">
+        <span class="text-glance-muted font-medium">{prefix}</span><span
+          class="wordmark-glance tracking-wider"
+          style={`color: ${accentColor}`}>{suffix}</span
+        >
+      </h3>
+      <p class="mt-2 text-sm font-sans text-glance-muted">{tagline}</p>
+    </div>
+
+    {!isLive && (
+      <span class="shrink-0 text-xs font-sans font-medium text-glance-dim border border-glance-border-dim rounded-full px-2.5 py-1 bg-glance-elevated">
+        Coming soon
+      </span>
+    )}
+  </div>
+
+  <p class="text-glance-muted text-sm font-sans leading-relaxed flex-1">{description}</p>
+
+  <div class="flex items-center gap-4 pt-1">
+    <a
+      href={href}
+      class="text-sm font-sans text-glance-accent hover:text-glance-text transition-colors duration-150 link-underline"
+    >
+      Learn more →
+    </a>
+    {externalHref && isLive && (
+      <a
+        href={externalHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm font-sans text-glance-dim hover:text-glance-muted transition-colors duration-150"
+      >
+        {externalLabel ?? 'Visit site'} ↗
+      </a>
+    )}
+  </div>
+</article>

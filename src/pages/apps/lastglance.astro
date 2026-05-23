@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="lastGLANCE"
+  description="lastGLANCE is the next app from GLANCE Apps. Coming soon to iOS."
+>
+  <article class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+    <!-- Breadcrumb -->
+    <nav class="mb-10 font-sans text-sm text-glance-dim" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-glance-muted transition-colors">GLANCE Apps</a>
+      <span class="mx-2">/</span>
+      <span class="text-glance-muted">lastGLANCE</span>
+    </nav>
+
+    <div class="max-w-xl">
+      <div class="mb-4 inline-flex items-center gap-2">
+        <span class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim border border-glance-border-dim rounded-full px-3 py-1 bg-glance-surface">
+          Coming soon
+        </span>
+      </div>
+
+      <h1 class="font-serif text-5xl md:text-6xl font-semibold leading-none mb-6">
+        <span class="text-glance-muted font-medium">last</span><span style="color: #9B8EC4;" class="tracking-wider font-bold">GLANCE</span>
+      </h1>
+
+      <p class="text-xl text-glance-muted font-serif italic mb-10">
+        Something new is coming.
+      </p>
+
+      <div class="space-y-5 text-glance-muted font-serif text-lg leading-relaxed mb-12">
+        <p>
+          The next app in the GLANCE family is in development. Like everything
+          we build, it will be calm, focused, and built with care.
+        </p>
+        <p>
+          We'll share more when the time is right.
+        </p>
+      </div>
+
+      <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6 mb-10">
+        <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+          Stay in the loop
+        </h2>
+        <p class="font-sans text-sm text-glance-muted mb-4">
+          To be notified when lastGLANCE launches, reach out and we'll add you
+          to the list.
+        </p>
+        <a
+          href="mailto:hello@glance-apps.com?subject=lastGLANCE%20interest"
+          class="font-sans text-sm text-glance-accent link-underline"
+        >
+          Contact us to stay informed →
+        </a>
+      </div>
+
+      <div class="pt-8 section-rule">
+        <p class="font-sans text-sm text-glance-dim">
+          In the meantime, explore our existing apps:
+          <a href="/apps/dayglance" class="text-glance-accent link-underline ml-1">dayGLANCE</a>
+          <span class="mx-2 text-glance-border">·</span>
+          <a href="/apps/lifeglance" class="text-glance-accent link-underline">lifeGLANCE</a>
+        </p>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

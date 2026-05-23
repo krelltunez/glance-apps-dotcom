@@ -1,0 +1,72 @@
+---
+const year = new Date().getFullYear();
+
+const footerLinks = [
+  {
+    group: 'Apps',
+    links: [
+      { href: '/apps/dayglance', label: 'dayGLANCE' },
+      { href: '/apps/lifeglance', label: 'lifeGLANCE' },
+      { href: '/apps/lastglance', label: 'lastGLANCE' },
+    ],
+  },
+  {
+    group: 'Company',
+    links: [
+      { href: '/about', label: 'About' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    group: 'Legal',
+    links: [
+      { href: '/privacy', label: 'Privacy Policy' },
+      { href: '/eula', label: 'Terms of Use' },
+    ],
+  },
+];
+---
+
+<footer class="section-rule mt-auto">
+  <div class="max-w-5xl mx-auto px-6 py-14">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" class="wordmark text-glance-text hover:text-glance-accent transition-colors duration-150 text-lg">
+          <span class="wordmark-glance">GLANCE</span><span class="text-glance-muted font-light"> Apps</span>
+        </a>
+        <p class="mt-3 text-sm text-glance-dim font-sans leading-relaxed">
+          Thoughtful apps<br />for everyday clarity.
+        </p>
+      </div>
+
+      {footerLinks.map(({ group, links }) => (
+        <div>
+          <h3 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+            {group}
+          </h3>
+          <ul class="space-y-2.5">
+            {links.map(({ href, label }) => (
+              <li>
+                <a
+                  href={href}
+                  class="text-sm font-sans text-glance-muted hover:text-glance-text transition-colors duration-150"
+                >
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="section-rule pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <p class="text-xs font-sans text-glance-dim">
+        &copy; {year} GLANCE Apps. All rights reserved.
+      </p>
+      <p class="text-xs font-sans text-glance-dim">
+        Made with care for iOS.
+      </p>
+    </div>
+  </div>
+</footer>

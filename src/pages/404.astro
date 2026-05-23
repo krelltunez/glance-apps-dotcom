@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found" description="This page doesn't exist.">
+  <div class="max-w-5xl mx-auto px-6 py-32 md:py-40 text-center">
+    <p class="font-sans text-xs font-semibold uppercase tracking-widest text-glance-dim mb-6">404</p>
+    <h1 class="font-serif text-4xl md:text-5xl font-semibold text-glance-text mb-6">
+      Nothing here.
+    </h1>
+    <p class="text-lg text-glance-muted font-serif mb-10">
+      This page doesn't exist—or it moved.
+    </p>
+    <a
+      href="/"
+      class="font-sans text-sm text-glance-accent link-underline"
+    >
+      ← Back to GLANCE Apps
+    </a>
+  </div>
+</BaseLayout>

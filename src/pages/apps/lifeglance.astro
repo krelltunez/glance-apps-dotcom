@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="lifeGLANCE"
+  description="lifeGLANCE is a personal dashboard for iOS. See your goals, habits, and milestones—curated, not cluttered."
+>
+  <article class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+    <!-- Breadcrumb -->
+    <nav class="mb-10 font-sans text-sm text-glance-dim" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-glance-muted transition-colors">GLANCE Apps</a>
+      <span class="mx-2">/</span>
+      <span class="text-glance-muted">lifeGLANCE</span>
+    </nav>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+      <div>
+        <h1 class="font-serif text-5xl md:text-6xl font-semibold leading-none mb-4">
+          <span class="text-glance-muted font-medium">life</span><span style="color: #7EB8A4;" class="tracking-wider font-bold">GLANCE</span>
+        </h1>
+        <p class="text-xl text-glance-muted font-serif italic mb-8">
+          Your life, at a glance.
+        </p>
+
+        <div class="space-y-5 text-glance-muted font-serif text-lg leading-relaxed mb-10">
+          <p>
+            Most life-tracking apps turn your goals into a to-do list. lifeGLANCE
+            takes a different approach: it helps you see the shape of your life
+            across weeks, months, and years.
+          </p>
+          <p>
+            Define what matters to you. Track it gently. Review it without judgment.
+            lifeGLANCE is a place to zoom out—to notice patterns, celebrate progress,
+            and remember what you're working toward.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-5">
+          <a
+            href="https://lifeglance.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 font-sans text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors duration-150"
+            style="background-color: #7EB8A4; color: #0D0D12;"
+          >
+            Visit lifeglance.app ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-5">
+            What it does
+          </h2>
+          <ul class="space-y-4 font-sans text-sm text-glance-muted">
+            <li class="flex gap-3">
+              <span style="color: #7EB8A4;" class="mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Life areas</strong> — Organize what matters: health, work, relationships, creativity, and more.</span>
+            </li>
+            <li class="flex gap-3">
+              <span style="color: #7EB8A4;" class="mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Goal tracking</strong> — Set intentions and watch them unfold over time.</span>
+            </li>
+            <li class="flex gap-3">
+              <span style="color: #7EB8A4;" class="mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Habit streaks</strong> — Quiet, pressure-free consistency tracking.</span>
+            </li>
+            <li class="flex gap-3">
+              <span style="color: #7EB8A4;" class="mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Milestones</strong> — Mark and remember the things worth celebrating.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+            Platform
+          </h2>
+          <p class="font-sans text-sm text-glance-muted">iOS · iPhone & iPad</p>
+          <p class="font-sans text-sm text-glance-dim mt-1">Available on the App Store</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-10 section-rule">
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
+        Privacy
+      </h2>
+      <p class="font-sans text-sm text-glance-muted max-w-xl leading-relaxed">
+        lifeGLANCE stores all your data locally on your device. No account
+        required. No data sent to our servers. Your life overview is yours.
+        <a href="/privacy" class="text-glance-accent link-underline ml-1">
+          Privacy policy →
+        </a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

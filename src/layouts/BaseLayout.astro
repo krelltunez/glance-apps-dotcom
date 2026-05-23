@@ -1,0 +1,56 @@
+---
+import '../styles/global.css';
+import '@fontsource-variable/lora';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalURL?: string;
+  ogType?: 'website' | 'article';
+}
+
+const {
+  title,
+  description = 'Thoughtful apps for everyday clarity. GLANCE Apps makes calm, focused tools for iOS.',
+  canonicalURL = new URL(Astro.url.pathname, Astro.site),
+  ogType = 'website',
+} = Astro.props;
+
+const siteName = 'GLANCE Apps';
+const fullTitle = title === siteName ? title : `${title} — ${siteName}`;
+---
+
+<!doctype html>
+<html lang="en" class="antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:url" content={canonicalURL} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap.xml" />
+  </head>
+  <body class="min-h-screen flex flex-col bg-glance-bg text-glance-text font-serif">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

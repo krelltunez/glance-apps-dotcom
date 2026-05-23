@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with GLANCE Apps. We'd love to hear from you."
+>
+  <article class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+    <div class="max-w-xl">
+      <p class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-accent mb-6">
+        Contact
+      </p>
+      <h1 class="font-serif text-4xl md:text-5xl font-semibold text-glance-text leading-tight mb-6">
+        Let's talk.
+      </h1>
+      <p class="text-lg text-glance-muted font-serif leading-relaxed mb-12">
+        Whether you have a question about one of our apps, a bug to report, or
+        just want to say hello—we read every message and reply to each one.
+      </p>
+
+      <div class="space-y-10">
+        <div>
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+            General & Support
+          </h2>
+          <a
+            href="mailto:hello@glance-apps.com"
+            class="font-sans text-glance-accent link-underline text-base"
+          >
+            hello@glance-apps.com
+          </a>
+          <p class="mt-2 text-sm text-glance-dim font-sans">
+            For questions, feedback, and app support.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+            Privacy & Legal
+          </h2>
+          <a
+            href="mailto:privacy@glance-apps.com"
+            class="font-sans text-glance-accent link-underline text-base"
+          >
+            privacy@glance-apps.com
+          </a>
+          <p class="mt-2 text-sm text-glance-dim font-sans">
+            For data requests or legal inquiries.
+          </p>
+        </div>
+
+        <div class="pt-6 section-rule">
+          <p class="text-sm font-sans text-glance-dim leading-relaxed">
+            We aim to respond within one to two business days. If you're
+            reporting a critical issue with a live app, please include your
+            device model and iOS version.
+          </p>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="dayGLANCE"
+  description="dayGLANCE is a calm daily planner for iOS. Morning intentions, daily notes, evening reflection—all in one quiet place."
+>
+  <article class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+    <!-- Breadcrumb -->
+    <nav class="mb-10 font-sans text-sm text-glance-dim" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-glance-muted transition-colors">GLANCE Apps</a>
+      <span class="mx-2">/</span>
+      <span class="text-glance-muted">dayGLANCE</span>
+    </nav>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+      <div>
+        <h1 class="font-serif text-5xl md:text-6xl font-semibold leading-none mb-4">
+          <span class="text-glance-muted font-medium">day</span><span class="text-glance-accent tracking-wider font-bold">GLANCE</span>
+        </h1>
+        <p class="text-xl text-glance-muted font-serif italic mb-8">
+          See your day clearly.
+        </p>
+
+        <div class="space-y-5 text-glance-muted font-serif text-lg leading-relaxed mb-10">
+          <p>
+            dayGLANCE is a daily planner built around the idea that structure
+            and stillness aren't opposites. Set a clear intention each morning,
+            capture what comes up throughout the day, and end with a moment of
+            reflection.
+          </p>
+          <p>
+            No kanban boards. No recurring tasks cascading into the future.
+            Just today—held simply and clearly.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-5">
+          <a
+            href="https://dayglance.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-glance-accent text-glance-bg font-sans text-sm font-semibold px-5 py-2.5 rounded-lg hover:bg-glance-accent-dim transition-colors duration-150"
+          >
+            Visit dayglance.app ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="space-y-6">
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-5">
+            What it does
+          </h2>
+          <ul class="space-y-4 font-sans text-sm text-glance-muted">
+            <li class="flex gap-3">
+              <span class="text-glance-accent mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Morning intention</strong> — One clear thing to focus on today.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-glance-accent mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Daily notes</strong> — A quiet space for thoughts, tasks, and whatever matters.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-glance-accent mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Evening reflection</strong> — A gentle nudge to close the day with intention.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-glance-accent mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Calendar aware</strong> — See what's on your schedule at a glance.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+            Platform
+          </h2>
+          <p class="font-sans text-sm text-glance-muted">iOS · iPhone & iPad</p>
+          <p class="font-sans text-sm text-glance-dim mt-1">Available on the App Store</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-10 section-rule">
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
+        Privacy
+      </h2>
+      <p class="font-sans text-sm text-glance-muted max-w-xl leading-relaxed">
+        dayGLANCE stores all your data locally on your device. No account
+        required. No data sent to our servers. Your journal is yours.
+        <a href="/privacy" class="text-glance-accent link-underline ml-1">
+          Privacy policy →
+        </a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

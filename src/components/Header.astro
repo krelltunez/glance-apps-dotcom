@@ -1,0 +1,37 @@
+---
+const navLinks = [
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="border-b border-glance-border-dim sticky top-0 z-50 bg-glance-bg/90 backdrop-blur-md">
+  <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+    <a href="/" class="wordmark text-glance-text hover:text-glance-accent transition-colors duration-150" aria-label="GLANCE Apps home">
+      <span class="wordmark-glance">GLANCE</span><span class="text-glance-muted font-light"> Apps</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <ul class="flex items-center gap-6">
+        {navLinks.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              class:list={[
+                'text-sm font-sans tracking-wide transition-colors duration-150',
+                currentPath === href
+                  ? 'text-glance-accent'
+                  : 'text-glance-muted hover:text-glance-text',
+              ]}
+              aria-current={currentPath === href ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>

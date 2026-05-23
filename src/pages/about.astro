@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="GLANCE Apps is an independent iOS studio making calm, focused tools for everyday life."
+>
+  <article class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+    <div class="max-w-2xl">
+      <p class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-accent mb-6">
+        About
+      </p>
+      <h1 class="font-serif text-4xl md:text-5xl font-semibold text-glance-text leading-tight mb-12">
+        Small studio.<br />Careful work.
+      </h1>
+
+      <div class="space-y-6 text-glance-muted font-serif text-lg leading-relaxed">
+        <p>
+          GLANCE Apps is an independent software studio focused on building
+          focused, calm tools for iOS. We make apps that earn a place in your
+          daily life without demanding more of your attention than they give back.
+        </p>
+        <p>
+          The studio started with a simple frustration: productivity apps had
+          become noisy, complicated, and self-important. We wanted something
+          quieter. So we built it.
+        </p>
+        <p>
+          Every app in the GLANCE family shares the same values: restraint in
+          design, depth in function, and respect for the person using it. We
+          don't add features for the sake of them. We ship when something is
+          genuinely ready.
+        </p>
+        <p>
+          We're one developer, working independently, building apps we actually
+          use every day.
+        </p>
+      </div>
+
+      <div class="mt-14 pt-10 section-rule grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+            Values
+          </h2>
+          <ul class="space-y-2 font-sans text-sm text-glance-muted">
+            <li class="flex gap-3"><span class="text-glance-accent">—</span> Calm over noise</li>
+            <li class="flex gap-3"><span class="text-glance-accent">—</span> Depth over breadth</li>
+            <li class="flex gap-3"><span class="text-glance-accent">—</span> Privacy as default</li>
+            <li class="flex gap-3"><span class="text-glance-accent">—</span> Ship slowly, ship well</li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+            Contact
+          </h2>
+          <p class="font-sans text-sm text-glance-muted mb-3">
+            Questions, feedback, or just want to say hello?
+          </p>
+          <a
+            href="/contact"
+            class="font-sans text-sm text-glance-accent link-underline"
+          >
+            Get in touch →
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
