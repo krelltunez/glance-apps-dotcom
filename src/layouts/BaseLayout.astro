@@ -9,17 +9,20 @@ interface Props {
   description?: string;
   canonicalURL?: string;
   ogType?: 'website' | 'article';
+  ogImage?: string;
 }
 
 const {
   title,
-  description = 'Thoughtful apps for everyday clarity. GLANCE Apps makes calm, focused tools for iOS, Android, and macOS.',
+  description = 'Thoughtful apps for everyday clarity. GLANCE Apps makes calm, focused tools for Android, macOS, Windows, Linux, and the web.',
   canonicalURL = new URL(Astro.url.pathname, Astro.site),
   ogType = 'website',
+  ogImage = '/og/default.svg',
 } = Astro.props;
 
 const siteName = 'GLANCE Apps';
-const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+const fullTitle = title === siteName ? title : `${title} · ${siteName}`;
+const ogImageUrl = new URL(ogImage, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -38,10 +41,12 @@ const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content={siteName} />
     <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={ogImageUrl} />
 
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap.xml" />

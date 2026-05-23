@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0D0D12"/>
+  <rect x="0" y="0" width="8" height="630" fill="#7b70db"/>
+  <text x="120" y="275" font-family="Georgia, 'Palatino Linotype', Palatino, serif" font-size="96">
+    <tspan fill="#8A8A99" font-weight="400">life</tspan><tspan fill="#7b70db" font-weight="700" letter-spacing="4">GLANCE</tspan>
+  </text>
+  <text x="122" y="348" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="28" fill="#636375">Your life, at a glance.</text>
+  <text x="122" y="572" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="16" fill="#3D3D4F" letter-spacing="3">GLANCE APPS</text>
+</svg>
