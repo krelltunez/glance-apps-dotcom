@@ -4,7 +4,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="lastGLANCE"
-  description="lastGLANCE is a calm tracker for the recurring upkeep in your life. Cleaning, car maintenance, pet care, health care, finances. Launching soon."
+  description="lastGLANCE is a calm tracker for the recurring upkeep in your life. Cleaning, car maintenance, pet care, health care, finances."
   ogImage="/og/lastglance.svg"
 >
   <article class="max-w-5xl mx-auto px-6 py-20 md:py-28">
@@ -18,12 +18,6 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
     <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
       <!-- Left column -->
       <div>
-        <div class="mb-4 inline-flex items-center gap-2">
-          <span class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim border border-glance-border-dim rounded-full px-3 py-1 bg-glance-surface">
-            Coming soon
-          </span>
-        </div>
-
         <h1 class="font-serif text-5xl md:text-6xl font-semibold leading-none mb-4">
           <span class="text-glance-muted font-medium">last</span><span style="color: #3DDB84;" class="tracking-wider font-bold">GLANCE</span>
         </h1>
@@ -43,17 +37,25 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
             of when you last did the things that matter, so you can decide what
             needs your attention.
           </p>
-          <p>
-            Launching soon.
-          </p>
         </div>
 
         <!-- Platforms -->
-        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6 mb-8">
           <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-3">
             Platforms
           </h2>
-          <p class="font-sans text-sm text-glance-muted">Web first. More to follow.</p>
+          <p class="font-sans text-sm text-glance-muted">Web · macOS · Windows · Linux</p>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-wrap gap-6">
+          <a
+            href="/apps/lastglance/downloads"
+            class="font-sans text-sm text-glance-muted hover:text-glance-accent transition-colors duration-150"
+            style="color: #3DDB84;"
+          >
+            All downloads →
+          </a>
         </div>
       </div>
 
@@ -91,25 +93,51 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
           </div>
         </div>
 
-        <!-- Stay in the loop -->
+        <!-- Cloud Sync -->
         <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
           <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
-            Stay in the loop
+            Cloud Sync
           </h2>
           <p class="font-sans text-sm text-glance-muted leading-relaxed">
-            Email <a href="mailto:hello@glance-apps.com?subject=lastGLANCE%20interest" class="last-accent-link">hello@glance-apps.com</a> to be notified when lastGLANCE launches.
+            Optional sync across your devices. No GLANCE Apps account. No GLANCE Apps servers. Zero-knowledge encrypted to a destination you control. Off by default.
           </p>
         </div>
       </div>
     </div>
 
     <div class="mt-16 pt-10 section-rule">
-      <p class="font-sans text-sm text-glance-dim">
-        In the meantime, explore our existing apps:
-        <a href="/apps/dayglance" class="last-accent-link ml-1">dayGLANCE</a>
-        <span class="mx-2 text-glance-border">·</span>
-        <a href="/apps/lifeglance" class="last-accent-link">lifeGLANCE</a>
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
+        Open Source
+      </h2>
+      <p class="font-sans text-sm text-glance-muted max-w-xl leading-relaxed mb-4">
+        lastGLANCE is open source under the MIT License. Self-host the web app,
+        build from source, or audit the code. Purchases on the app stores support
+        continued development.
       </p>
+      <a
+        href="https://github.com/krelltunez/lastGLANCE"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-sm font-sans last-accent-link link-underline"
+      >
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" class="shrink-0 opacity-75">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View on GitHub →
+      </a>
+    </div>
+
+    <div class="mt-10 pt-10 section-rule">
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
+        Privacy
+      </h2>
+      <p class="font-sans text-sm text-glance-muted max-w-xl leading-relaxed mb-4">
+        lastGLANCE stores your data locally on your device. No account required.
+        No data leaves your device without your direction. Your data remains yours.
+      </p>
+      <a href="/privacy" class="font-sans text-sm last-accent-link link-underline">
+        Privacy policy →
+      </a>
     </div>
   </article>
 </BaseLayout>
