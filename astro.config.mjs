@@ -3,6 +3,6 @@ import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://glance-apps.com',
+  site: 'https://www.glance-apps.com',
   output: 'static',
 });
