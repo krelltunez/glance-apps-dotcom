@@ -37,6 +37,7 @@ export function formatReleaseDate(isoString: string): string {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    timeZone: 'America/Denver',
   });
 }
 
