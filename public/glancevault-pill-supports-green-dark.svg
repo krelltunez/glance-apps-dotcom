@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 232 32" width="232" height="32" role="img" aria-label="supports GLANCEvault">
+  <title>supports GLANCEvault</title>
+  <rect x="0" y="0" width="232" height="32" rx="16" fill="rgba(255,255,255,0.04)" stroke="#555" stroke-width="0.5"/>
+  <text x="116" y="21" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="13">
+    <tspan fill="#888">supports </tspan><tspan fill="#5dd56a">GLANCE</tspan><tspan font-style="italic" font-weight="700" fill="#e8e8e8">vault</tspan>
+  </text>
+</svg>
