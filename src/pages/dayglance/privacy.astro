@@ -7,13 +7,13 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
 
 <ProseLayout
   title="dayGLANCE Privacy Policy"
-  description="How dayGLANCE handles your data. Short version: we don't collect it, and anything you sync goes to a destination you control."
+  description="How dayGLANCE handles your data. A local-first, privacy-first day planner: we do not operate servers, collect analytics, or store your data."
   lastUpdated="July 10, 2026"
 >
   <p class="lead">
-    Short version: dayGLANCE does not collect, store, or share your personal
-    data. Your information stays on your device unless you choose to sync it to
-    a destination you control.
+    dayGLANCE is a local-first, privacy-first day planner. We do not operate
+    servers, collect analytics, or store your data. This policy explains what
+    data the app accesses, where it goes, and who controls it.
   </p>
 
   <ControllerIdentity>
@@ -24,21 +24,47 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     </p>
   </ControllerIdentity>
 
-  <h2>Data stored on your device</h2>
+  <h2>Data We Do Not Collect</h2>
+  <ul>
+    <li>We do not collect personal information.</li>
+    <li>We do not use analytics or tracking.</li>
+    <li>We do not have user accounts.</li>
+    <li>We do not transmit data to dayGLANCE servers. There are none.</li>
+  </ul>
+
+  <h2>Data the App Accesses</h2>
+
+  <h3>Calendar Data (CalDAV / Nextcloud)</h3>
   <p>
-    All content you create in dayGLANCE, such as your tasks, notes, intentions,
-    habits, and reflections, is stored locally on your device using your
-    platform's standard on-device storage. This data remains under your control
-    at all times.
-  </p>
-  <p>
-    If you use your platform's automatic backup service (iCloud Backup, Google
-    Backup, or similar), your device data may be backed up as part of your
-    standard device backup. This is governed by your platform provider's privacy
-    policy.
+    dayGLANCE connects to CalDAV-compatible servers (such as Nextcloud) that you
+    configure. All calendar data is fetched directly from your server and stored
+    locally on your device. We never see or touch this data.
   </p>
 
-  <h2>Cloud sync and backup</h2>
+  <h3>Health Data (Health Connect and HealthKit)</h3>
+  <p>
+    dayGLANCE may read activity and sleep data (specifically: daily step count
+    and sleep session duration) from Health Connect on Android or HealthKit on
+    iOS, to display progress toward user-configurable daily goals as "habit
+    rings" in the day view. Granting Health Connect or HealthKit permissions is
+    entirely optional; the rest of the app functions normally without them.
+  </p>
+  <p>
+    Health data is read locally on your device and is never used for analytics,
+    shared with third parties, or written back to Health Connect or HealthKit. If
+    you have enabled optional Cloud Sync, habit data (including steps and sleep
+    duration) is included in the sync payload using the zero-knowledge encryption
+    described in the "Cloud Sync and Remote Backup" section below.
+  </p>
+
+  <h3>Obsidian Vault</h3>
+  <p>
+    dayGLANCE can read from and write to your local Obsidian vault. All vault
+    access occurs on-device. No vault content is transmitted to dayGLANCE or any
+    third party.
+  </p>
+
+  <h3>Cloud Sync and Remote Backup</h3>
   <p>
     dayGLANCE supports optional cloud sync and remote backup to destinations you
     configure. Two kinds of destination are supported, and they use different
@@ -67,79 +93,93 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     your passphrase, your encrypted data cannot be recovered. This is by design.
   </p>
 
-  <h2>Health Data (Health Connect and HealthKit)</h2>
+  <h3>GLANCEintents Cross-App Integration</h3>
   <p>
-    dayGLANCE offers optional health integration. If you enable it, dayGLANCE
-    reads your step count and sleep data from Health Connect on Android or
-    HealthKit on iOS, solely to display and reflect on that information within
-    the app. This data is used on your device and is never written back to
-    Health Connect or HealthKit, and it is never transmitted to any server we
-    control. Health integration is off by default.
+    dayGLANCE optionally communicates with other GLANCE Apps (such as lastGLANCE)
+    through a cross-app protocol called GLANCEintents. When enabled, dayGLANCE
+    reads and writes small event files containing task metadata (such as task
+    title, due date, and a source identifier from the originating app) to the
+    same WebDAV destination you configure for cloud sync. These files allow other
+    GLANCE Apps you use to receive the same data. For example, a chore you log in
+    lastGLANCE can appear as a scheduled task in dayGLANCE, and completing it in
+    dayGLANCE can be reflected back in lastGLANCE.
+  </p>
+  <p>
+    GLANCEintents is opt-in and off by default. Event files can optionally be
+    encrypted using the same passphrase-derived encryption model described in the
+    Cloud Sync section above; when encryption is enabled, the server sees only
+    ciphertext. Event files are written to and read from your WebDAV server only.
+    They are never transmitted to dayGLANCE servers (we do not operate any) or to
+    any third party. The GLANCEintents protocol specification is publicly
+    available at github.com/glance-apps/glance-intents.
   </p>
 
-  <h2>AI features</h2>
+  <h3>Microphone (Voice Task Input)</h3>
   <p>
-    dayGLANCE offers optional AI features that require you to configure access to
-    an AI provider of your choice (such as Ollama for local processing, or a
-    cloud provider like OpenAI or Anthropic). AI features are off by default.
-    When you use them, the data you choose to send is transmitted to the provider
-    you selected and is governed by that provider's terms and privacy policy.
-    GLANCE Apps does not operate AI services and does not have access to data you
-    send to AI providers.
+    dayGLANCE uses your microphone for AI-powered voice task input: you can speak
+    to create, move, reschedule, or edit tasks. Audio is processed as follows:
+  </p>
+  <ul>
+    <li>
+      <strong>Cloud AI providers (e.g., OpenAI, Anthropic):</strong> If you
+      configure a cloud-based AI provider, your audio or transcribed text is sent
+      to that provider. You are responsible for reviewing that provider's privacy
+      policy. dayGLANCE does not control how third-party AI providers handle your
+      data.
+    </li>
+    <li>
+      <strong>Local AI (Ollama):</strong> If you configure a local Ollama
+      instance, audio processing occurs entirely on your device or local network.
+      No data is sent externally.
+    </li>
+  </ul>
+  <p>
+    The choice of AI provider is yours. dayGLANCE is a bring-your-own-AI (BYOAI)
+    application and does not provide or operate any AI backend.
   </p>
 
-  <h2>Analytics</h2>
+  <h2>Third-Party Services</h2>
   <p>
-    dayGLANCE does not use third-party analytics services. Your platform's
-    distribution service (such as Apple's App Store Connect or Google Play
-    Console) may share aggregated, anonymized crash and usage data with us if you
-    have opted into analytics on your device. This data cannot be used to
-    identify you individually.
+    dayGLANCE does not integrate with any third-party analytics, advertising, or
+    data brokers. The only third-party services involved are those you configure
+    yourself:
   </p>
+  <ul>
+    <li>Your CalDAV / Nextcloud server</li>
+    <li>Your WebDAV / Nextcloud server</li>
+    <li>A GLANCEvault instance you self-host</li>
+    <li>iCloud Drive (protected by Apple's standard encryption)</li>
+    <li>Your AI provider (cloud or local)</li>
+    <li>Apple App Store or Google Play (purchase verification)</li>
+    <li>RevenueCat (entitlement management)</li>
+  </ul>
 
-  <h2>Payments and subscriptions</h2>
+  <h3>Payments & Subscriptions</h3>
   <p>
-    dayGLANCE may offer in-app purchases and subscriptions. On Android these are
-    processed entirely by Google Play; on iOS and macOS they are processed
-    entirely by the Apple App Store. We do not collect, see, or store your
-    payment information. The relevant store may share a purchase token with the
-    app solely to verify your subscription status; this token is used on your
+    dayGLANCE offers optional subscriptions and one-time purchases. On Android
+    these are processed entirely by Google Play; on iOS and macOS they are
+    processed entirely by the Apple App Store. We do not collect, see, or store
+    your payment information. The relevant store may share a purchase token with
+    the app solely to verify your subscription status; this token is used on your
     device and is not transmitted to dayGLANCE servers (there are none). The
     applicable store's privacy policy governs all payment processing.
   </p>
   <p>
     To manage subscription entitlements across platforms, dayGLANCE uses
-    RevenueCat. RevenueCat receives an anonymized app-user identifier and
-    purchase and subscription events (such as which product was purchased and
-    whether a subscription is active) in order to determine your entitlement
-    status. RevenueCat does not receive your name, your app content, or other
-    personally identifying information. RevenueCat's privacy policy governs its
-    handling of this data.
+    RevenueCat. RevenueCat receives an anonymized app-user identifier and purchase
+    and subscription events (such as which product was purchased and whether a
+    subscription is active) in order to determine your entitlement status.
+    RevenueCat does not receive your name, your app content, or other personally
+    identifying information. RevenueCat's privacy policy governs its handling of
+    this data.
   </p>
-
-  <h2>Third-party services</h2>
-  <p>
-    dayGLANCE can interoperate with third-party services at your direction. When
-    you enable a feature that uses one, your use of that service is governed by
-    its own terms and privacy policy. These may include:
-  </p>
-  <ul>
-    <li>A CalDAV or Nextcloud server (calendar sync)</li>
-    <li>A WebDAV or Nextcloud server (file sync)</li>
-    <li>A GLANCEvault instance you self-host</li>
-    <li>iCloud Drive (protected by Apple's standard encryption)</li>
-    <li>Your AI provider</li>
-    <li>The Apple App Store or Google Play (purchase verification)</li>
-    <li>RevenueCat (entitlement management)</li>
-  </ul>
 
   <ChildrensPrivacy />
 
-  <h2>Changes to this policy</h2>
+  <h2>Changes to This Policy</h2>
   <p>
-    If we make material changes to this policy, we will update the "Last updated"
-    date at the top of this page and notify users through the app or this website
-    before changes take effect.
+    If this policy changes materially, we will update the "Last updated" date
+    above and note the change in the app's release notes.
   </p>
 
   <PrivacyContact />
