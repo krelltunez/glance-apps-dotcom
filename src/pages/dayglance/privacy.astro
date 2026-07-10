@@ -31,14 +31,24 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     <li>We do not have user accounts.</li>
     <li>We do not transmit data to dayGLANCE servers. There are none.</li>
   </ul>
+  <p>
+    Note for the web app: because browsers block direct cross-origin requests,
+    calendar and WebDAV sync traffic on the web version of dayGLANCE passes
+    through a stateless relay we host. Your server address, your login
+    credentials, and your file contents pass through this relay in transit but
+    are never stored or logged. The native mobile apps and the desktop app
+    connect directly to your servers and do not use any relay.
+  </p>
 
   <h2>Data the app accesses</h2>
 
   <h3>Calendar data (CalDAV / Nextcloud)</h3>
   <p>
     dayGLANCE connects to CalDAV-compatible servers (such as Nextcloud) that you
-    configure. All calendar data is fetched directly from your server and stored
-    locally on your device. We never see or touch this data.
+    configure. Calendar data is stored locally on your device. On the native and
+    desktop apps it is fetched directly from your server. On the web app it is
+    fetched through the stateless relay described above (in transit only, never
+    stored).
   </p>
 
   <h3>Health data (Health Connect and HealthKit)</h3>
@@ -52,10 +62,14 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
   <p>
     Health data is read locally on your device and is never used for analytics,
     shared with third parties, or written back to Health Connect or HealthKit. If
-    you have enabled optional cloud sync to a WebDAV-compatible server (such as
-    Nextcloud) or to GLANCEvault, habit data (including steps and sleep duration)
-    is included in the sync payload using the client-side, zero-knowledge
-    encryption described in the "Cloud sync and remote backup" section below.
+    you have enabled optional cloud sync, habit data (including steps and sleep
+    duration) is included in the sync payload. GLANCEvault sync is always
+    end-to-end encrypted; WebDAV sync is encrypted only if you turn on the
+    sync-encryption option (it is off by default), and is otherwise stored on
+    your server as plaintext. Summary statistics about your habits (such as how
+    often a step or sleep goal was met, never raw health measurements) may also
+    be sent to your configured AI provider if you use the optional AI summary
+    features.
     Health data is never synced to iCloud Drive: in keeping with Apple's
     requirement that HealthKit data not be stored in iCloud, dayGLANCE excludes
     all health-derived data from the iCloud sync payload.
@@ -67,21 +81,38 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     access occurs on-device. No vault content is transmitted to dayGLANCE or any
     third party.
   </p>
+  <p>
+    Note that once you import content from your vault, imported daily notes and
+    note-derived tasks become part of your dayGLANCE data. Like your other tasks
+    and notes, they are then included in cloud sync, in prompts sent to your AI
+    provider, and in TRMNL display pushes, if and only if you enable those
+    optional features.
+  </p>
 
   <h3>Cloud sync and remote backup</h3>
   <p>
     dayGLANCE supports optional cloud sync and remote backup to destinations you
-    configure. Two kinds of destination are supported, and they use different
-    encryption models.
+    configure: GLANCEvault, a WebDAV-compatible server (such as Nextcloud), or
+    iCloud Drive. Each uses a different encryption model, described below.
   </p>
   <p>
-    WebDAV-compatible servers (such as Nextcloud) and GLANCEvault: files are
-    encrypted client-side before leaving your device using AES-256-GCM, with
-    keys derived from a sync passphrase you choose via PBKDF2. The server stores
-    only opaque ciphertext and never has access to your plaintext data, your
-    passphrase, or your encryption key. This is a zero-knowledge architecture.
-    GLANCEvault is a sync server you run on your own infrastructure; GLANCE Apps
-    does not operate any GLANCEvault instance and has no access to its contents.
+    GLANCEvault: your data is always encrypted client-side before leaving your
+    device using AES-256-GCM, with keys derived from a sync passphrase you choose
+    via PBKDF2 (310,000 iterations). The server stores encrypted content only. It
+    does, however, see limited metadata it needs to route and merge changes:
+    labels identifying each item's type and id (for example that a daily note
+    exists for a given date), and modification timestamps. It never has access to
+    your item contents, your passphrase, or your encryption key. GLANCEvault is a
+    sync server you run on your own infrastructure; GLANCE Apps does not operate
+    any GLANCEvault instance and has no access to its contents.
+  </p>
+  <p>
+    WebDAV-compatible servers (such as Nextcloud): client-side encryption is
+    optional and off by default. When you enable the sync-encryption option,
+    files are encrypted with AES-256-GCM using a passphrase-derived key (PBKDF2,
+    310,000 iterations) before upload, and the server stores only ciphertext. If
+    you do not enable it, your data is stored on your WebDAV server as plaintext,
+    protected only by that server's own access controls and transport security.
   </p>
   <p>
     iCloud Drive: if you choose iCloud Drive, your files are stored in your
@@ -96,6 +127,20 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     the web app it is stored in the app's sandboxed local storage. If you forget
     your passphrase, your encrypted data cannot be recovered. This is by design.
   </p>
+  <p>
+    Shared member names: if you enable multi-user mode, the display names of
+    household members are stored in a small shared file on your sync destination
+    so that other GLANCE apps you use can recognize the same members. This file
+    currently stores member display names in plain text even when sync encryption
+    is enabled. It lives only on the destination you control and is never sent to
+    us.
+  </p>
+  <p>
+    If you use multi-user mode with sync encryption and opt in to syncing calendar
+    credentials, the usernames and app passwords for your configured calendar
+    servers are included (encrypted) in the sync payload so your other devices can
+    connect without re-entering them.
+  </p>
 
   <h3>GLANCEintents cross-app integration</h3>
   <p>
@@ -103,7 +148,8 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     through a cross-app protocol called GLANCEintents. When enabled, dayGLANCE
     reads and writes small event files containing task metadata (such as task
     title, due date, and a source identifier from the originating app) to the
-    same WebDAV destination you configure for cloud sync. These files allow other
+    sync destinations you enable for it: your WebDAV server, iCloud Drive (on
+    Apple platforms), and/or your GLANCEvault server. These files allow other
     GLANCE Apps you use to receive the same data. For example, a chore you log in
     lastGLANCE can appear as a scheduled task in dayGLANCE, and completing it in
     dayGLANCE can be reflected back in lastGLANCE.
@@ -111,14 +157,30 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
   <p>
     GLANCEintents is opt-in and off by default. Event files can optionally be
     encrypted using the same passphrase-derived encryption model described in the
-    Cloud Sync section above; when encryption is enabled, the server sees only
-    ciphertext. Event files are written to and read from your WebDAV server only.
-    They are never transmitted to dayGLANCE servers (we do not operate any) or to
-    any third party. The GLANCEintents protocol specification is publicly
-    available at github.com/glance-apps/glance-intents.
+    Cloud Sync section above. When encryption is enabled, event contents are
+    encrypted, though a small routing header (the originating app, the source
+    item id, and the due date) remains readable to the storage destination. Event
+    files are written to and read from your own WebDAV server, iCloud Drive, or
+    GLANCEvault instance only. They are never transmitted to dayGLANCE servers (we
+    do not operate any) or to any third party. The GLANCEintents protocol
+    specification is publicly available at github.com/glance-apps/glance-intents.
   </p>
 
-  <h3>Microphone (voice task input)</h3>
+  <h3>AI features</h3>
+  <p>
+    AI features beyond voice: dayGLANCE offers several optional AI-assisted
+    features, including daily and weekly summaries, an evening reflection, smart
+    scheduling and rescheduling suggestions, focus-block nudges, subtask
+    generation, and task suggestions. When you use these features, dayGLANCE sends
+    relevant planning data to the AI provider you have configured. Depending on
+    the feature, this can include task titles, dates, times, durations,
+    priorities, deadlines, and tags; calendar event titles and times; habit, goal,
+    and project names and progress; and, for subtask generation, the task's notes.
+    Raw daily-note text is not sent. The focus-block nudge may send this data
+    automatically when you open a focus block, rather than only on an explicit
+    request. All AI requests go directly from your device to the provider you
+    chose; dayGLANCE operates no AI backend of its own.
+  </p>
   <p>
     dayGLANCE uses your microphone for AI-powered voice task input: you can speak
     to create, move, reschedule, or edit tasks. Audio is processed as follows:
@@ -126,10 +188,11 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
   <ul>
     <li>
       <strong>Cloud AI providers (e.g., OpenAI, Anthropic):</strong> If you
-      configure a cloud-based AI provider, your audio or transcribed text is sent
-      to that provider. You are responsible for reviewing that provider's privacy
-      policy. dayGLANCE does not control how third-party AI providers handle your
-      data.
+      configure a cloud-based AI provider, your audio is sent to that provider for
+      transcription, and the resulting text is sent together with context about
+      your existing tasks so the assistant can act on your request. You are
+      responsible for reviewing that provider's privacy policy. dayGLANCE does not
+      control how third-party AI providers handle your data.
     </li>
     <li>
       <strong>Local AI (Ollama):</strong> If you configure a local Ollama
@@ -149,13 +212,32 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     yourself:
   </p>
   <ul>
-    <li>Your CalDAV / Nextcloud server</li>
-    <li>Your WebDAV / Nextcloud server</li>
+    <li>Your CalDAV / Nextcloud calendar server</li>
+    <li>Your WebDAV / Nextcloud sync server</li>
     <li>A GLANCEvault instance you self-host</li>
     <li>iCloud Drive (protected by Apple's standard encryption)</li>
     <li>Your AI provider (cloud or local)</li>
     <li>Apple App Store or Google Play (purchase verification)</li>
-    <li>RevenueCat (entitlement management)</li>
+    <li>RevenueCat (subscription entitlement management, on Apple platforms only)</li>
+    <li>
+      TRMNL (only if you enable the TRMNL display feature): dayGLANCE pushes a
+      compact agenda (task titles, times, habit names, and a short daily-note
+      excerpt) to the TRMNL webhook you configure, on a periodic schedule while
+      enabled
+    </li>
+    <li>
+      Weather providers (only if you enable weather): to show local weather,
+      dayGLANCE sends your postal code, place name, or approximate coordinates to
+      public weather and geocoding services (such as open-meteo.com)
+    </li>
+    <li>
+      GitHub (api.github.com): the app checks for new releases on some platforms;
+      no personal data is sent
+    </li>
+    <li>
+      Optional daily-content services (such as a fact or joke of the day), if
+      enabled; no personal data is sent
+    </li>
   </ul>
 
   <h3>Payments and subscriptions</h3>
@@ -169,13 +251,13 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     applicable store's privacy policy governs all payment processing.
   </p>
   <p>
-    To manage subscription entitlements across platforms, dayGLANCE uses
-    RevenueCat. RevenueCat receives an anonymized app-user identifier and purchase
-    and subscription events (such as which product was purchased and whether a
-    subscription is active) in order to determine your entitlement status.
-    RevenueCat does not receive your name, your app content, or other personally
-    identifying information. RevenueCat's privacy policy governs its handling of
-    this data.
+    On Apple platforms (iOS and macOS), dayGLANCE uses RevenueCat to manage
+    subscription entitlements. RevenueCat receives an anonymized app-user
+    identifier and your Apple purchase receipt, from which it determines your
+    entitlement status. On Android, subscriptions are handled entirely on-device
+    through Google Play and RevenueCat is not used. RevenueCat does not receive
+    your name, your app content, or other personally identifying information.
+    RevenueCat's privacy policy governs its handling of this data.
   </p>
 
   <ChildrensPrivacy />

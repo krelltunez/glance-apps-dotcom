@@ -126,11 +126,14 @@ import ProseLayout from '../layouts/ProseLayout.astro';
   <p>
     Some Apps offer optional cloud sync to a destination you control (such as
     WebDAV, Nextcloud, a self-hosted GLANCEvault instance, or iCloud Drive). When
-    you sync to WebDAV, Nextcloud, or GLANCEvault, your data is encrypted
-    client-side with zero-knowledge encryption; we do not operate these servers
-    and have no access to your synced data. When you sync to iCloud Drive, your
-    data is stored in your iCloud account under Apple's standard encryption,
-    governed by Apple's privacy policy.
+    you sync to GLANCEvault, your data is always encrypted client-side before it
+    leaves your device. When you sync to WebDAV or Nextcloud, client-side
+    encryption is optional and off by default; enable the sync-encryption option
+    to encrypt your data before upload. In all cases we do not operate these
+    servers and have no access to your synced data. See the Privacy Policy for
+    details on what limited metadata a sync server can see. When you sync to
+    iCloud Drive, your data is stored in your iCloud account under Apple's
+    standard encryption, governed by Apple's privacy policy.
   </p>
   <p>
     Some Apps offer optional AI features that require you to configure access to
@@ -170,9 +173,11 @@ import ProseLayout from '../layouts/ProseLayout.astro';
 
   <h2>9. Third-Party Services</h2>
   <p>
-    The Apps may interoperate with third-party services (such as CalDAV servers,
-    Obsidian vaults, Health Connect (Android) and HealthKit (iOS), Stream Deck,
-    TRMNL displays, and AI providers). Your use of any third-party service is
+    The Apps may interoperate with third-party services (such as CalDAV/WebDAV
+    servers, a self-hosted GLANCEvault instance, iCloud Drive, Obsidian vaults,
+    Health Connect (Android) and HealthKit (iOS), Stream Deck, TRMNL displays,
+    weather providers, AI providers, and the app stores and their entitlement
+    services). Your use of any third-party service is
     governed by that service's own terms. We are not responsible for third-party
     services' availability, accuracy, or practices.
   </p>
