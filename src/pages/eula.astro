@@ -125,9 +125,12 @@ import ProseLayout from '../layouts/ProseLayout.astro';
   </p>
   <p>
     Some Apps offer optional cloud sync to a destination you control (such as
-    WebDAV, Nextcloud, or iCloud Drive). When enabled, your data syncs through
-    your chosen destination with zero-knowledge encryption. We do not operate
-    sync servers and do not have access to your synced data.
+    WebDAV, Nextcloud, a self-hosted GLANCEvault instance, or iCloud Drive). When
+    you sync to WebDAV, Nextcloud, or GLANCEvault, your data is encrypted
+    client-side with zero-knowledge encryption; we do not operate these servers
+    and have no access to your synced data. When you sync to iCloud Drive, your
+    data is stored in your iCloud account under Apple's standard encryption,
+    governed by Apple's privacy policy.
   </p>
   <p>
     Some Apps offer optional AI features that require you to configure access to
