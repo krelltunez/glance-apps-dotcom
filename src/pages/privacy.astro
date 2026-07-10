@@ -44,11 +44,14 @@ import PrivacyContact from '../components/privacy/PrivacyContact.astro';
     GLANCE Apps does not operate any of these sync servers.
   </p>
   <p>
-    When you sync to WebDAV, Nextcloud, or a GLANCEvault instance you host, your
-    data is encrypted client-side before leaving your device with zero-knowledge
-    encryption, and no one but you can access its contents. When you sync to
-    iCloud Drive, your data is stored in your personal iCloud account under
-    Apple's standard encryption, governed by Apple's privacy policy.
+    When you sync to a GLANCEvault instance you host, your data is always
+    encrypted client-side before leaving your device; the server stores encrypted
+    content and never has access to your item contents or your passphrase. When
+    you sync to WebDAV or Nextcloud, client-side encryption is optional and off by
+    default; enable each app's sync-encryption option to encrypt your data before
+    upload. When you sync to iCloud Drive, your data is stored in your personal
+    iCloud account under Apple's standard encryption, governed by Apple's privacy
+    policy. See each app's privacy policy for the details of its encryption model.
   </p>
   <p>
     Sync is off by default.
@@ -61,7 +64,7 @@ import PrivacyContact from '../components/privacy/PrivacyContact.astro';
   <ul>
     <li>Require you to create an account</li>
     <li>Collect personally identifiable information</li>
-    <li>Transmit your notes, entries, or any app content to any servers we control</li>
+    <li>Store your notes, entries, or any app content on any servers we control (the web versions of some Apps route sync traffic through a stateless relay we host, in transit only and never stored; see each app's privacy policy)</li>
     <li>Track your location</li>
     <li>Use advertising identifiers</li>
     <li>Sell or share your data with third parties</li>
