@@ -52,9 +52,13 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
   <p>
     Health data is read locally on your device and is never used for analytics,
     shared with third parties, or written back to Health Connect or HealthKit. If
-    you have enabled optional Cloud Sync, habit data (including steps and sleep
-    duration) is included in the sync payload using the encryption described in
-    the "Cloud sync and remote backup" section below.
+    you have enabled optional cloud sync to a WebDAV-compatible server (such as
+    Nextcloud) or to GLANCEvault, habit data (including steps and sleep duration)
+    is included in the sync payload using the client-side, zero-knowledge
+    encryption described in the "Cloud sync and remote backup" section below.
+    Health data is never synced to iCloud Drive: in keeping with Apple's
+    requirement that HealthKit data not be stored in iCloud, dayGLANCE excludes
+    all health-derived data from the iCloud sync payload.
   </p>
 
   <h3>Obsidian vault</h3>
