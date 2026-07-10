@@ -1,5 +1,8 @@
 ---
 import ProseLayout from '../layouts/ProseLayout.astro';
+import ControllerIdentity from '../components/privacy/ControllerIdentity.astro';
+import ChildrensPrivacy from '../components/privacy/ChildrensPrivacy.astro';
+import PrivacyContact from '../components/privacy/PrivacyContact.astro';
 ---
 
 <ProseLayout
@@ -12,14 +15,14 @@ import ProseLayout from '../layouts/ProseLayout.astro';
     data. Your information stays on your device.
   </p>
 
-  <h2>Who we are</h2>
-  <p>
-    GLANCE Apps is an independent software studio publishing applications
-    including dayGLANCE, lifeGLANCE, and lastGLANCE. This privacy policy covers
-    our publisher-level practices and the glance-apps.com website. Each app may
-    have additional privacy details specific to its features; see the privacy
-    policy linked from each app's product page.
-  </p>
+  <ControllerIdentity>
+    <p>
+      This privacy policy covers our publisher-level practices and the
+      glance-apps.com website. Each app may have additional privacy details
+      specific to its features; see the privacy policy linked from each app's
+      product page.
+    </p>
+  </ControllerIdentity>
 
   <h2>Data stored on your device</h2>
   <p>
@@ -36,11 +39,13 @@ import ProseLayout from '../layouts/ProseLayout.astro';
 
   <h2>Optional cloud sync</h2>
   <p>
-    Some Apps offer optional cloud sync either to a destination you control
-    (such as WebDAV, Nextcloud, or iCloud Drive) or to GLANCEvault, our
-    self-hostable sync server. When using a hosted GLANCEvault instance
-    operated by GLANCE Apps, your data is encrypted end-to-end before leaving
-    your device and we cannot access its contents. Sync is off by default.
+    Some Apps offer optional cloud sync to a destination you control, such as
+    WebDAV, Nextcloud, or iCloud Drive, or to GLANCEvault, a sync server you run
+    on your own infrastructure. GLANCE Apps does not operate any GLANCEvault
+    instance. When you sync to WebDAV, Nextcloud, or a GLANCEvault instance you
+    host, your data is encrypted end-to-end before leaving your device and no
+    one but you can access its contents. Sync to iCloud Drive is stored in your
+    iCloud account under Apple's standard encryption. Sync is off by default.
   </p>
 
   <h2>Data we do not collect</h2>
@@ -72,11 +77,7 @@ import ProseLayout from '../layouts/ProseLayout.astro';
     scripts on this site.
   </p>
 
-  <h2>Children's privacy</h2>
-  <p>
-    Our Apps are not directed at children under 13. We do not knowingly collect
-    information from children.
-  </p>
+  <ChildrensPrivacy />
 
   <h2>Changes to this policy</h2>
   <p>
@@ -85,11 +86,5 @@ import ProseLayout from '../layouts/ProseLayout.astro';
     before changes take effect.
   </p>
 
-  <h2>Contact</h2>
-  <p>
-    Questions about our privacy practices? We're happy to answer them.
-  </p>
-  <p>
-    <a href="mailto:privacy@glance-apps.com">privacy@glance-apps.com</a>
-  </p>
+  <PrivacyContact />
 </ProseLayout>

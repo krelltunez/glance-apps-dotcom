@@ -1,0 +1,15 @@
+---
+// Shared "Who we are" / controller identity clause.
+// Imported by both the publisher umbrella policy and per-app policies so the
+// core identification of the data controller cannot drift between them.
+// Page-specific scope notes are passed as children via the default slot.
+---
+
+<h2>Who we are</h2>
+<p>
+  GLANCE Apps is an independent software studio publishing applications
+  including dayGLANCE, lifeGLANCE, and lastGLANCE. GLANCE Apps is a Colorado
+  registered trade name of Jason Krellner and is the party responsible for the
+  data practices described in this policy.
+</p>
+<slot />

@@ -1,0 +1,146 @@
+---
+import ProseLayout from '../../layouts/ProseLayout.astro';
+import ControllerIdentity from '../../components/privacy/ControllerIdentity.astro';
+import ChildrensPrivacy from '../../components/privacy/ChildrensPrivacy.astro';
+import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
+---
+
+<ProseLayout
+  title="dayGLANCE Privacy Policy"
+  description="How dayGLANCE handles your data. Short version: we don't collect it, and anything you sync goes to a destination you control."
+  lastUpdated="July 10, 2026"
+>
+  <p class="lead">
+    Short version: dayGLANCE does not collect, store, or share your personal
+    data. Your information stays on your device unless you choose to sync it to
+    a destination you control.
+  </p>
+
+  <ControllerIdentity>
+    <p>
+      This policy covers dayGLANCE specifically. For our publisher-level
+      practices and the glance-apps.com website, see the{' '}
+      <a href="/privacy">GLANCE Apps privacy policy</a>.
+    </p>
+  </ControllerIdentity>
+
+  <h2>Data stored on your device</h2>
+  <p>
+    All content you create in dayGLANCE, such as your tasks, notes, intentions,
+    habits, and reflections, is stored locally on your device using your
+    platform's standard on-device storage. This data remains under your control
+    at all times.
+  </p>
+  <p>
+    If you use your platform's automatic backup service (iCloud Backup, Google
+    Backup, or similar), your device data may be backed up as part of your
+    standard device backup. This is governed by your platform provider's privacy
+    policy.
+  </p>
+
+  <h2>Cloud sync and backup</h2>
+  <p>
+    dayGLANCE supports optional cloud sync and remote backup to destinations you
+    configure. Two kinds of destination are supported, and they use different
+    encryption models.
+  </p>
+  <p>
+    WebDAV-compatible servers (such as Nextcloud) and GLANCEvault: files are
+    encrypted client-side before leaving your device using AES-256-GCM, with
+    keys derived from a sync passphrase you choose via PBKDF2. The server stores
+    only opaque ciphertext and never has access to your plaintext data, your
+    passphrase, or your encryption key. This is a zero-knowledge architecture.
+    GLANCEvault is a sync server you run on your own infrastructure; GLANCE Apps
+    does not operate any GLANCEvault instance and has no access to its contents.
+  </p>
+  <p>
+    iCloud Drive: if you choose iCloud Drive, your files are stored in your
+    personal iCloud account and protected by Apple's standard encryption. This
+    path does not use the app's passphrase-derived encryption described above.
+    Apple's privacy policy governs data stored in iCloud.
+  </p>
+  <p>
+    Your passphrase is never stored anywhere. So that you are not prompted on
+    every launch, the derived key is cached locally on your device: on Android
+    it is held in the hardware-backed Android Keystore, and on iOS, macOS, and
+    the web app it is stored in the app's sandboxed local storage. If you forget
+    your passphrase, your encrypted data cannot be recovered. This is by design.
+  </p>
+
+  <h2>Health Data (Health Connect and HealthKit)</h2>
+  <p>
+    dayGLANCE offers optional health integration. If you enable it, dayGLANCE
+    reads your step count and sleep data from Health Connect on Android or
+    HealthKit on iOS, solely to display and reflect on that information within
+    the app. This data is used on your device and is never written back to
+    Health Connect or HealthKit, and it is never transmitted to any server we
+    control. Health integration is off by default.
+  </p>
+
+  <h2>AI features</h2>
+  <p>
+    dayGLANCE offers optional AI features that require you to configure access to
+    an AI provider of your choice (such as Ollama for local processing, or a
+    cloud provider like OpenAI or Anthropic). AI features are off by default.
+    When you use them, the data you choose to send is transmitted to the provider
+    you selected and is governed by that provider's terms and privacy policy.
+    GLANCE Apps does not operate AI services and does not have access to data you
+    send to AI providers.
+  </p>
+
+  <h2>Analytics</h2>
+  <p>
+    dayGLANCE does not use third-party analytics services. Your platform's
+    distribution service (such as Apple's App Store Connect or Google Play
+    Console) may share aggregated, anonymized crash and usage data with us if you
+    have opted into analytics on your device. This data cannot be used to
+    identify you individually.
+  </p>
+
+  <h2>Payments and subscriptions</h2>
+  <p>
+    dayGLANCE may offer in-app purchases and subscriptions. On Android these are
+    processed entirely by Google Play; on iOS and macOS they are processed
+    entirely by the Apple App Store. We do not collect, see, or store your
+    payment information. The relevant store may share a purchase token with the
+    app solely to verify your subscription status; this token is used on your
+    device and is not transmitted to dayGLANCE servers (there are none). The
+    applicable store's privacy policy governs all payment processing.
+  </p>
+  <p>
+    To manage subscription entitlements across platforms, dayGLANCE uses
+    RevenueCat. RevenueCat receives an anonymized app-user identifier and
+    purchase and subscription events (such as which product was purchased and
+    whether a subscription is active) in order to determine your entitlement
+    status. RevenueCat does not receive your name, your app content, or other
+    personally identifying information. RevenueCat's privacy policy governs its
+    handling of this data.
+  </p>
+
+  <h2>Third-party services</h2>
+  <p>
+    dayGLANCE can interoperate with third-party services at your direction. When
+    you enable a feature that uses one, your use of that service is governed by
+    its own terms and privacy policy. These may include:
+  </p>
+  <ul>
+    <li>A CalDAV or Nextcloud server (calendar sync)</li>
+    <li>A WebDAV or Nextcloud server (file sync)</li>
+    <li>A GLANCEvault instance you self-host</li>
+    <li>iCloud Drive (protected by Apple's standard encryption)</li>
+    <li>Your AI provider</li>
+    <li>The Apple App Store or Google Play (purchase verification)</li>
+    <li>RevenueCat (entitlement management)</li>
+  </ul>
+
+  <ChildrensPrivacy />
+
+  <h2>Changes to this policy</h2>
+  <p>
+    If we make material changes to this policy, we will update the "Last updated"
+    date at the top of this page and notify users through the app or this website
+    before changes take effect.
+  </p>
+
+  <PrivacyContact />
+</ProseLayout>
