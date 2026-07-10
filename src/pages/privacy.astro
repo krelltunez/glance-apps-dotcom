@@ -40,12 +40,18 @@ import PrivacyContact from '../components/privacy/PrivacyContact.astro';
   <h2>Optional cloud sync</h2>
   <p>
     Some Apps offer optional cloud sync to a destination you control, such as
-    WebDAV, Nextcloud, or iCloud Drive, or to GLANCEvault, a sync server you run
-    on your own infrastructure. GLANCE Apps does not operate any GLANCEvault
-    instance. When you sync to WebDAV, Nextcloud, or a GLANCEvault instance you
-    host, your data is encrypted end-to-end before leaving your device and no
-    one but you can access its contents. Sync to iCloud Drive is stored in your
-    iCloud account under Apple's standard encryption. Sync is off by default.
+    WebDAV, Nextcloud, a self-hosted GLANCEvault instance, or iCloud Drive.
+    GLANCE Apps does not operate any of these sync servers.
+  </p>
+  <p>
+    When you sync to WebDAV, Nextcloud, or a GLANCEvault instance you host, your
+    data is encrypted client-side before leaving your device with zero-knowledge
+    encryption, and no one but you can access its contents. When you sync to
+    iCloud Drive, your data is stored in your personal iCloud account under
+    Apple's standard encryption, governed by Apple's privacy policy.
+  </p>
+  <p>
+    Sync is off by default.
   </p>
 
   <h2>Data we do not collect</h2>
