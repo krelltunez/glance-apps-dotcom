@@ -4,6 +4,5 @@
   <text x="30.8" y="36" text-anchor="start" font-family="Georgia, 'Times New Roman', serif" font-size="22">
     <tspan fill="#fe8b00">GLANCE</tspan><tspan font-style="italic" font-weight="700" fill="#e8e8e8">vault</tspan>
   </text>
-  <rect x="188" y="17" width="45" height="22" rx="11" fill="#6b5a20"/>
   <text x="210.5" y="32.3" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="11" letter-spacing="0.5" fill="#edcf5b">BETA</text>
 </svg>
