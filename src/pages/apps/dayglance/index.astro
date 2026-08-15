@@ -155,6 +155,28 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
           </p>
         </div>
 
+        <!-- AI Assistants (MCP) -->
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+            AI Assistants
+          </h2>
+          <p class="font-sans text-sm text-glance-muted leading-relaxed mb-3">
+            Connect Claude Desktop, Claude Code, or any compatible assistant to dayGLANCE through a small local server built on the Model Context Protocol, an open standard for AI tool connections. An assistant can read your day, your inbox, and your goal progress, and can create, edit, schedule, and complete tasks for you. Every change an assistant makes is journaled in dayGLANCE and can be undone per task or all at once.
+          </p>
+          <p class="font-sans text-sm text-glance-muted leading-relaxed mb-3">
+            Know before you enable it: anything an assistant reads through this connection is sent to that assistant's model provider (for Claude, that is Anthropic). The server listens only on your own computer and is never reachable from the network. Off by default: reads, writes, and device calendar access are each their own opt-in under Settings, then Local Integrations, and device calendar events stay out unless you grant them separately.
+          </p>
+          <p class="font-sans text-sm text-glance-muted leading-relaxed">
+            Setup for Claude Desktop, Claude Code, and everything else is covered in the
+            <a
+              href="https://github.com/glance-apps/mcp-bridge#readme"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-glance-accent link-underline"
+            >bridge README</a>.
+          </p>
+        </div>
+
       </div>
     </div>
 
