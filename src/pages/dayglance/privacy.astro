@@ -8,7 +8,7 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
 <ProseLayout
   title="dayGLANCE Privacy Policy"
   description="How dayGLANCE handles your data. A local-first, privacy-first day planner: we do not store your data, collect analytics, or require accounts."
-  lastUpdated="July 10, 2026"
+  lastUpdated="August 17, 2026"
 >
   <p class="lead">
     dayGLANCE is a local-first, privacy-first day planner. We do not store your
@@ -206,6 +206,36 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     not available in all countries.
   </p>
 
+  <h3>Local AI assistants (MCP server)</h3>
+  <p>
+    dayGLANCE includes an optional local server built on the Model Context
+    Protocol (MCP), an open standard that lets AI assistant applications on the
+    same computer (such as Claude Desktop) read your planning data and, if you
+    allow it, make changes. It is off by default, and reads, writes, and device
+    calendar access are three separate opt-ins in Settings, then Local
+    Integrations. The server listens only on your own computer (127.0.0.1) and
+    is never reachable from the network.
+  </p>
+  <p>
+    When you enable it, an application you connect can read your schedule,
+    tasks, inbox, goals, and projects. Under a separate opt-in, it can also
+    read events from your device calendar, which may include other people's
+    information, such as attendee names and meeting titles.
+  </p>
+  <p>
+    Assistant applications typically transmit what they read to third-party AI
+    providers over the internet. dayGLANCE itself transmits nothing. The
+    connection is local, and any data that leaves your device is sent by the
+    client application you chose, installed, and configured, not by dayGLANCE.
+    dayGLANCE has no relationship with, and no visibility into, those providers,
+    and cannot see, limit, or audit what a connected client does with data it
+    has read. This is outside the scope of dayGLANCE's own encryption and
+    no-server-access guarantees, which cover how dayGLANCE stores and syncs your
+    data, not what an application you authorized does after reading it. You are
+    responsible for reviewing the privacy policy of any client you connect (and
+    the AI provider behind it).
+  </p>
+
   <h2>Third-party services</h2>
   <p>
     dayGLANCE does not integrate with any third-party analytics, advertising, or
@@ -218,6 +248,11 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     <li>A GLANCEvault instance you self-host</li>
     <li>iCloud Drive (protected by Apple's standard encryption)</li>
     <li>Your AI provider (cloud or local)</li>
+    <li>
+      Any MCP client application you connect, only if you enable the optional
+      MCP server: the client reads dayGLANCE data locally and commonly transmits
+      what it reads to its own AI provider
+    </li>
     <li>Apple App Store or Google Play (purchase verification)</li>
     <li>RevenueCat (subscription entitlement management, on Apple platforms only)</li>
     <li>
