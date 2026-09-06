@@ -26,9 +26,11 @@ const fallbackUrl = `https://github.com/${repo}/releases`;
 const platformGroups = result.status === 'ok' ? groupAssetsByPlatform(result.assets) : [];
 
 // This is a static build: whatever the GitHub API said at build time is frozen into
-// the HTML. When it said nothing useful, let the browser try again on page load so a
-// rate-limited or unlucky build does not leave the page broken until the next deploy.
-const retryInBrowser = result.status !== 'ok' || platformGroups.length === 0;
+// the HTML. Only 'error' means we never got an answer — a build that reached GitHub
+// and found no desktop assets is authoritative, and re-asking from every visitor's
+// browser would just burn requests. Retry the unanswered case so a rate-limited
+// build does not leave the page broken until the next deploy.
+const retryInBrowser = result.status === 'error';
 ---
 
 <div
@@ -249,6 +251,15 @@ const retryInBrowser = result.status !== 'ok' || platformGroups.length === 0;
       </div>`;
   }
 
+  function renderNoPackages(repo: string): string {
+    const releases = `https://github.com/${esc(repo)}/releases`;
+    return `
+      <p class="font-sans text-sm text-glance-muted">
+        No desktop packages in the latest release.
+        <a href="${releases}" target="_blank" rel="noopener noreferrer" class="dl-accent-link">View all releases on GitHub →</a>
+      </p>`;
+  }
+
   async function hydrate(root: HTMLElement): Promise<void> {
     const repo = root.dataset.repo;
     const body = root.querySelector<HTMLElement>('[data-downloads-body]');
@@ -260,15 +271,16 @@ const retryInBrowser = result.status !== 'ok' || platformGroups.length === 0;
       '<p class="font-sans text-sm text-glance-dim">Checking for the latest release…</p>';
 
     const release = await loadRelease(repo);
-    const assetsMarkup = release ? renderAssets(release) : '';
-
-    if (!release || !assetsMarkup) {
-      // Nothing better to show than what the build already decided.
+    if (!release) {
+      // Still no answer, so the build-time message stands.
       body.innerHTML = original;
       return;
     }
 
-    body.innerHTML = assetsMarkup;
+    // We reached GitHub, so never leave the build's "could not load" message up:
+    // this release genuinely has no desktop packages.
+    const assetsMarkup = renderAssets(release);
+    body.innerHTML = assetsMarkup || renderNoPackages(repo);
     if (version) version.innerHTML = renderVersion(release);
   }
 
