@@ -3,6 +3,7 @@ import {
   fetchLatestRelease,
   formatFileSize,
   formatReleaseDate,
+  groupAssetsByPlatform,
   type ReleaseAsset,
 } from '../lib/releases';
 
@@ -12,24 +13,32 @@ interface Props {
 }
 
 const { repo, accentColor = '#fe8b00' } = Astro.props;
+
+// Astro's import.meta.env already folds in build-time process.env vars, so a
+// GITHUB_TOKEN set in the Vercel dashboard lands here. Without one the build is
+// anonymous and shares GitHub's 60-req/hour-per-IP budget with every other build
+// on that runner.
 const token = import.meta.env.GITHUB_TOKEN;
+
 const result = await fetchLatestRelease(repo, token);
 const fallbackUrl = `https://github.com/${repo}/releases`;
 
-const platformGroups =
-  result.status === 'ok'
-    ? [
-        { label: 'macOS (Apple Silicon)', assets: result.assets.macAppleSilicon },
-        { label: 'macOS (Intel)', assets: result.assets.macIntel },
-        { label: 'Windows', assets: result.assets.windows },
-        { label: 'Linux (AppImage)', assets: result.assets.linuxAppImage },
-        { label: 'Linux (.deb)', assets: result.assets.linuxDeb },
-        { label: 'Linux (.rpm)', assets: result.assets.linuxRpm },
-      ].filter((g) => g.assets.length > 0)
-    : [];
+const platformGroups = result.status === 'ok' ? groupAssetsByPlatform(result.assets) : [];
+
+// This is a static build: whatever the GitHub API said at build time is frozen into
+// the HTML. Only 'error' means we never got an answer — a build that reached GitHub
+// and found no desktop assets is authoritative, and re-asking from every visitor's
+// browser would just burn requests. Retry the unanswered case so a rate-limited
+// build does not leave the page broken until the next deploy.
+const retryInBrowser = result.status === 'error';
 ---
 
-<div style={`--dl-accent: ${accentColor};`}>
+<div
+  style={`--dl-accent: ${accentColor};`}
+  data-downloads-root
+  data-repo={repo}
+  data-retry={retryInBrowser ? '' : null}
+>
 
 <!-- Desktop downloads -->
 <div class="mt-10 pt-10 section-rule">
@@ -37,106 +46,262 @@ const platformGroups =
     Desktop
   </h2>
 
-  {result.status === 'no-releases' && (
-    <p class="font-sans text-sm text-glance-muted">
-      No desktop downloads available yet.
-    </p>
-  )}
+  <div data-downloads-body>
+    {result.status === 'no-releases' && (
+      <p class="font-sans text-sm text-glance-muted">
+        No desktop downloads available yet.
+      </p>
+    )}
 
-  {result.status === 'error' && (
-    <p class="font-sans text-sm text-glance-muted">
-      Could not load release information.{' '}
-      <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" class="dl-accent-link">
-        View releases on GitHub →
-      </a>
-    </p>
-  )}
+    {result.status === 'error' && (
+      <p class="font-sans text-sm text-glance-muted">
+        Could not load release information.{' '}
+        <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" class="dl-accent-link">
+          View releases on GitHub →
+        </a>
+      </p>
+    )}
 
-  {result.status === 'ok' && platformGroups.length === 0 && (
-    <p class="font-sans text-sm text-glance-muted">
-      No desktop packages in the latest release.{' '}
-      <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" class="dl-accent-link">
-        View all releases on GitHub →
-      </a>
-    </p>
-  )}
+    {result.status === 'ok' && platformGroups.length === 0 && (
+      <p class="font-sans text-sm text-glance-muted">
+        No desktop packages in the latest release.{' '}
+        <a href={fallbackUrl} target="_blank" rel="noopener noreferrer" class="dl-accent-link">
+          View all releases on GitHub →
+        </a>
+      </p>
+    )}
 
-  {result.status === 'ok' && platformGroups.length > 0 && (
-    <div class="space-y-1">
-      {platformGroups.map(({ label, assets }) =>
-        assets.map((asset: ReleaseAsset) => (
-          <div class="flex items-center justify-between gap-4 py-3 border-b border-glance-border-dim last:border-0">
-            <div class="min-w-0">
-              <p class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-0.5">
-                {label}
-              </p>
-              <p class="text-sm font-sans text-glance-muted truncate">{asset.name}</p>
+    {result.status === 'ok' && platformGroups.length > 0 && (
+      <div class="space-y-1">
+        {platformGroups.map(({ label, assets }) =>
+          assets.map((asset: ReleaseAsset) => (
+            <div class="flex items-center justify-between gap-4 py-3 border-b border-glance-border-dim last:border-0">
+              <div class="min-w-0">
+                <p class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-0.5">
+                  {label}
+                </p>
+                <p class="text-sm font-sans text-glance-muted truncate">{asset.name}</p>
+              </div>
+              <div class="flex items-center gap-4 shrink-0">
+                <span class="text-xs font-sans text-glance-dim hidden sm:block">
+                  {formatFileSize(asset.size)}
+                </span>
+                <a
+                  href={asset.browser_download_url}
+                  download
+                  class="inline-flex items-center gap-1.5 text-xs font-sans font-semibold border border-glance-border rounded-md px-3 py-1.5 text-glance-muted hover:text-glance-text hover:border-glance-muted transition-colors duration-150"
+                >
+                  <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true">
+                    <path d="M7.47 10.78a.75.75 0 0 0 1.06 0l3.75-3.75a.75.75 0 0 0-1.06-1.06L8.75 8.44V1.75a.75.75 0 0 0-1.5 0v6.69L4.78 5.97a.75.75 0 0 0-1.06 1.06l3.75 3.75ZM3.75 13a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z"/>
+                  </svg>
+                  Download
+                </a>
+              </div>
             </div>
-            <div class="flex items-center gap-4 shrink-0">
-              <span class="text-xs font-sans text-glance-dim hidden sm:block">
-                {formatFileSize(asset.size)}
-              </span>
-              <a
-                href={asset.browser_download_url}
-                download
-                class="inline-flex items-center gap-1.5 text-xs font-sans font-semibold border border-glance-border rounded-md px-3 py-1.5 text-glance-muted hover:text-glance-text hover:border-glance-muted transition-colors duration-150"
-              >
-                <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true">
-                  <path d="M7.47 10.78a.75.75 0 0 0 1.06 0l3.75-3.75a.75.75 0 0 0-1.06-1.06L8.75 8.44V1.75a.75.75 0 0 0-1.5 0v6.69L4.78 5.97a.75.75 0 0 0-1.06 1.06l3.75 3.75ZM3.75 13a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z"/>
-                </svg>
-                Download
-              </a>
-            </div>
-          </div>
-        ))
-      )}
+          ))
+        )}
+      </div>
+    )}
+  </div>
+</div>
+
+<!-- Version info -->
+<div data-downloads-version>
+  {result.status === 'ok' && (
+    <div class="mt-10 pt-10 section-rule">
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+        Version
+      </h2>
+      <dl class="space-y-2 font-sans text-sm">
+        <div class="flex gap-6">
+          <dt class="text-glance-dim w-24 shrink-0">Release</dt>
+          <dd class="text-glance-muted">{result.release.tag_name}</dd>
+        </div>
+        <div class="flex gap-6">
+          <dt class="text-glance-dim w-24 shrink-0">Published</dt>
+          <dd class="text-glance-muted">{formatReleaseDate(result.release.published_at)}</dd>
+        </div>
+        <div class="flex gap-6">
+          <dt class="text-glance-dim w-24 shrink-0">Notes</dt>
+          <dd>
+            <a
+              href={result.release.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="dl-accent-link"
+            >
+              View on GitHub →
+            </a>
+          </dd>
+        </div>
+      </dl>
     </div>
   )}
 </div>
 
-<!-- Version info -->
-{result.status === 'ok' && (
-  <div class="mt-10 pt-10 section-rule">
-    <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
-      Version
-    </h2>
-    <dl class="space-y-2 font-sans text-sm">
-      <div class="flex gap-6">
-        <dt class="text-glance-dim w-24 shrink-0">Release</dt>
-        <dd class="text-glance-muted">{result.release.tag_name}</dd>
-      </div>
-      <div class="flex gap-6">
-        <dt class="text-glance-dim w-24 shrink-0">Published</dt>
-        <dd class="text-glance-muted">{formatReleaseDate(result.release.published_at)}</dd>
-      </div>
-      <div class="flex gap-6">
-        <dt class="text-glance-dim w-24 shrink-0">Notes</dt>
-        <dd>
-          <a
-            href={result.release.html_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="dl-accent-link"
-          >
-            View on GitHub →
-          </a>
-        </dd>
-      </div>
-    </dl>
-  </div>
-)}
-
 </div>
 
+<script>
+  import {
+    categorizeAssets,
+    formatFileSize,
+    formatReleaseDate,
+    groupAssetsByPlatform,
+    type Release,
+  } from '../lib/releases';
+
+  const DOWNLOAD_ICON =
+    '<svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor" aria-hidden="true">' +
+    '<path d="M7.47 10.78a.75.75 0 0 0 1.06 0l3.75-3.75a.75.75 0 0 0-1.06-1.06L8.75 8.44V1.75a.75.75 0 0 0-1.5 0v6.69L4.78 5.97a.75.75 0 0 0-1.06 1.06l3.75 3.75ZM3.75 13a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5Z"/>' +
+    '</svg>';
+
+  function esc(value: string): string {
+    return value
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  /** Only ever emit hrefs GitHub could plausibly have given us. */
+  function safeUrl(value: string): string {
+    return /^https:\/\//i.test(value) ? value : '#';
+  }
+
+  async function getJson(url: string): Promise<any | null> {
+    try {
+      const res = await fetch(url, {
+        headers: { Accept: 'application/vnd.github+json' },
+      });
+      if (!res.ok) return null;
+      return await res.json();
+    } catch {
+      return null;
+    }
+  }
+
+  /** Newest published release, falling back to the list when there is no stable one. */
+  async function loadRelease(repo: string): Promise<Release | null> {
+    const base = `https://api.github.com/repos/${repo}`;
+    const latest = await getJson(`${base}/releases/latest`);
+    if (latest) return latest as Release;
+
+    const list = await getJson(`${base}/releases?per_page=20`);
+    if (!Array.isArray(list)) return null;
+
+    const published = (list as Release[]).filter((release) => !release.draft);
+    if (published.length === 0) return null;
+
+    return published.reduce((a, b) =>
+      new Date(b.published_at).getTime() > new Date(a.published_at).getTime() ? b : a
+    );
+  }
+
+  function renderAssets(release: Release): string {
+    const groups = groupAssetsByPlatform(categorizeAssets(release.assets ?? []));
+    if (groups.length === 0) return '';
+
+    const rows = groups
+      .flatMap(({ label, assets }) =>
+        assets.map(
+          (asset) => `
+            <div class="flex items-center justify-between gap-4 py-3 border-b border-glance-border-dim last:border-0">
+              <div class="min-w-0">
+                <p class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-0.5">${esc(label)}</p>
+                <p class="text-sm font-sans text-glance-muted truncate">${esc(asset.name)}</p>
+              </div>
+              <div class="flex items-center gap-4 shrink-0">
+                <span class="text-xs font-sans text-glance-dim hidden sm:block">${esc(formatFileSize(asset.size))}</span>
+                <a
+                  href="${esc(safeUrl(asset.browser_download_url))}"
+                  download
+                  class="inline-flex items-center gap-1.5 text-xs font-sans font-semibold border border-glance-border rounded-md px-3 py-1.5 text-glance-muted hover:text-glance-text hover:border-glance-muted transition-colors duration-150"
+                >${DOWNLOAD_ICON}Download</a>
+              </div>
+            </div>`
+        )
+      )
+      .join('');
+
+    return `<div class="space-y-1">${rows}</div>`;
+  }
+
+  function renderVersion(release: Release): string {
+    return `
+      <div class="mt-10 pt-10 section-rule">
+        <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">Version</h2>
+        <dl class="space-y-2 font-sans text-sm">
+          <div class="flex gap-6">
+            <dt class="text-glance-dim w-24 shrink-0">Release</dt>
+            <dd class="text-glance-muted">${esc(release.tag_name)}</dd>
+          </div>
+          <div class="flex gap-6">
+            <dt class="text-glance-dim w-24 shrink-0">Published</dt>
+            <dd class="text-glance-muted">${esc(formatReleaseDate(release.published_at))}</dd>
+          </div>
+          <div class="flex gap-6">
+            <dt class="text-glance-dim w-24 shrink-0">Notes</dt>
+            <dd>
+              <a href="${esc(safeUrl(release.html_url))}" target="_blank" rel="noopener noreferrer" class="dl-accent-link">
+                View on GitHub →
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </div>`;
+  }
+
+  function renderNoPackages(repo: string): string {
+    const releases = `https://github.com/${esc(repo)}/releases`;
+    return `
+      <p class="font-sans text-sm text-glance-muted">
+        No desktop packages in the latest release.
+        <a href="${releases}" target="_blank" rel="noopener noreferrer" class="dl-accent-link">View all releases on GitHub →</a>
+      </p>`;
+  }
+
+  async function hydrate(root: HTMLElement): Promise<void> {
+    const repo = root.dataset.repo;
+    const body = root.querySelector<HTMLElement>('[data-downloads-body]');
+    const version = root.querySelector<HTMLElement>('[data-downloads-version]');
+    if (!repo || !body) return;
+
+    const original = body.innerHTML;
+    body.innerHTML =
+      '<p class="font-sans text-sm text-glance-dim">Checking for the latest release…</p>';
+
+    const release = await loadRelease(repo);
+    if (!release) {
+      // Still no answer, so the build-time message stands.
+      body.innerHTML = original;
+      return;
+    }
+
+    // We reached GitHub, so never leave the build's "could not load" message up:
+    // this release genuinely has no desktop packages.
+    const assetsMarkup = renderAssets(release);
+    body.innerHTML = assetsMarkup || renderNoPackages(repo);
+    if (version) version.innerHTML = renderVersion(release);
+  }
+
+  document
+    .querySelectorAll<HTMLElement>('[data-downloads-root][data-retry]')
+    .forEach((root) => {
+      void hydrate(root);
+    });
+</script>
+
 <style>
-  .dl-accent-link {
+  /* Global so the rule also matches rows the browser fallback creates, which do
+     not carry this component's scoping attribute. */
+  :global(.dl-accent-link) {
     color: var(--dl-accent);
     text-decoration: underline;
     text-decoration-color: color-mix(in srgb, var(--dl-accent) 25%, transparent);
     text-underline-offset: 3px;
     transition: text-decoration-color 0.15s;
   }
-  .dl-accent-link:hover {
+  :global(.dl-accent-link:hover) {
     text-decoration-color: var(--dl-accent);
   }
 </style>
