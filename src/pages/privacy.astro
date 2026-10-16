@@ -20,8 +20,7 @@ import PrivacyContact from '../components/privacy/PrivacyContact.astro';
       This privacy policy covers our publisher-level practices and the
       glance-apps.com website. Each app may have additional privacy details
       specific to its features; see the privacy policy linked from each app's
-      product page. lastGLANCE's details are in the{' '}
-      <a href="#lastglance">lastGLANCE section</a> below.
+      product page.
     </p>
   </ControllerIdentity>
 
@@ -72,128 +71,9 @@ import PrivacyContact from '../components/privacy/PrivacyContact.astro';
 
   <h2 id="lastglance">lastGLANCE</h2>
   <p>
-    lastGLANCE tracks when you last did recurring chores and, with People, when
-    you were last in touch with the people who matter to you. Everything you
-    enter (chores, completions, people, their dates, logged contacts and notes)
-    is stored on your device. This section describes what lastGLANCE accesses
-    and where your data can go. Every feature below is optional, and nothing
-    reaches GLANCE Apps.
-  </p>
-
-  <h3>Phone contacts (People)</h3>
-  <p>
-    On Android and iOS, lastGLANCE can read your phone's contacts to import people
-    or link a person to a contact. This is off by default. lastGLANCE asks for
-    contacts permission only after you turn on Phone contacts in Settings and
-    confirm an in-app explanation, and you can turn it off or revoke the
-    permission at any time. Access is read-only: lastGLANCE never adds, changes,
-    or deletes your contacts.
-  </p>
-  <ul>
-    <li>
-      When you import, lastGLANCE saves the contacts you choose as people, with
-      their names and dates (such as birthdays), in the app's local storage.
-    </li>
-    <li>
-      When you link a person to a contact, lastGLANCE remembers which contact it
-      is on that device only. The link is not synced.
-    </li>
-    <li>
-      Phone numbers and email addresses are read at the moment you tap Call, Text
-      or Email, and a contact photo when you open the person. They are handed to
-      your phone's dialer, messaging or mail app, or shown on screen, and are not
-      stored by lastGLANCE.
-    </li>
-  </ul>
-  <p>
-    Imported people leave your device only if you turn on sync, as described
-    below.
-  </p>
-
-  <h3>Sync</h3>
-  <p>
-    lastGLANCE can sync to destinations you configure: a WebDAV server (such as
-    Nextcloud), a GLANCEvault instance, or a folder that a sync tool you choose
-    (such as Syncthing, Nextcloud, Google Drive, Dropbox, OneDrive or
-    FolderSync) keeps in step across your devices. Sync is off by default. Your
-    People data travels as its own file or vault collection, alongside your
-    chores, and uses the same encryption as your chores.
-  </p>
-  <ul>
-    <li>
-      GLANCEvault: your data is always encrypted on your device before it is
-      sent. The server stores encrypted content only.
-    </li>
-    <li>
-      WebDAV: encryption is optional and off by default. Turn it on in Cloud Sync
-      to encrypt your data before upload. Otherwise it is stored on your server
-      as plain text, protected by that server's own access controls.
-    </li>
-    <li>
-      Folder sync: encryption is a per-device switch in Cloud Sync. The file is
-      stored wherever your sync tool keeps that folder and is governed by that
-      tool's privacy policy.
-    </li>
-  </ul>
-  <p>
-    Your encryption passphrase is never stored. The key derived from it is kept
-    on your device (in the Android Keystore on Android) so you are not asked for
-    it on every launch. If you forget your passphrase, encrypted data cannot be
-    recovered.
-  </p>
-  <p>
-    Household: if you share lastGLANCE with your household, the members' display
-    names are kept in a small shared file on your sync destination so other GLANCE
-    Apps can recognize the same people. This file is not encrypted. It stays on
-    the destination you control.
-  </p>
-  <p>
-    The web version of lastGLANCE may relay WebDAV requests through a stateless
-    proxy we host, because browsers block many direct requests. Your server
-    address, credentials and data pass through it in transit and are never stored
-    or logged. The Android and iOS apps connect to your server directly.
-  </p>
-
-  <h3>Connections to other GLANCE Apps and automation</h3>
-  <p>
-    These are off by default, and each one runs only through the sync
-    destinations you set up for it. They send nothing to GLANCE Apps.
-  </p>
-  <ul>
-    <li>
-      dayGLANCE: lastGLANCE can send chores, a reminder to get in touch with
-      someone whose catch-up is overdue, and today's birthdays and other dates to
-      dayGLANCE as tasks, and receive completions back.
-    </li>
-    <li>
-      lifeGLANCE: for people you choose, lastGLANCE can add each contact you log
-      to your lifeGLANCE timeline.
-    </li>
-    <li>
-      Automation apps such as Tasker (Android): other apps on your phone can ask
-      lastGLANCE to add or complete a chore, log a contact or open a screen, and
-      read summary counts such as how many chores are overdue.
-    </li>
-  </ul>
-  <p>
-    These messages use the GLANCEintents protocol and can be encrypted with your
-    sync passphrase.
-  </p>
-
-  <h3>Notifications and widgets</h3>
-  <p>
-    Chore reminders, date reminders and the daily catch-up digest are scheduled
-    on your device. Home screen and Lock Screen widgets read a summary of your
-    chores and people (names, how long since you were in touch, upcoming dates)
-    that the app saves on your device. None of this is sent anywhere.
-  </p>
-
-  <h3>Purchases</h3>
-  <p>
-    The Google Play version offers an optional unlock, processed entirely by
-    Google Play. We do not see or store your payment information. Purchase status
-    is checked on your device through Google Play and is not sent to us. Google's
-    privacy policy governs payment processing.
+    lastGLANCE's details, including phone contacts, People, sync and its
+    connections to other GLANCE Apps, are in the{' '}
+    <a href="/lastglance/privacy">lastGLANCE privacy policy</a>.
   </p>
 
   <h2>Data we do not collect</h2>
