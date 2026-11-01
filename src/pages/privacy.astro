@@ -8,7 +8,7 @@ import PrivacyContact from '../components/privacy/PrivacyContact.astro';
 <ProseLayout
   title="Privacy Policy"
   description="How GLANCE Apps handles your data. Short version: we don't collect it."
-  lastUpdated="October 16, 2026"
+  lastUpdated="November 1, 2026"
 >
   <p class="lead">
     Short version: GLANCE Apps does not collect, store, or share your personal
@@ -55,7 +55,13 @@ import PrivacyContact from '../components/privacy/PrivacyContact.astro';
     policy. See each app's privacy policy for the details of its encryption model.
   </p>
   <p>
-    Sync is off by default.
+    Sync is off by default, with one exception: on iPhone and iPad, Apps that
+    offer iCloud sync turn it on so your devices signed in to the same Apple ID
+    stay in step with nothing to set up. Your data stays in your own iCloud
+    account. Each device has its own switch to turn it off, which stops that
+    device reading or writing iCloud and leaves the copy there for your other
+    devices. When a fresh install finds your data in iCloud, it asks before
+    restoring it.
   </p>
 
   <h2>Per-app integrations</h2>
@@ -82,6 +88,20 @@ import PrivacyContact from '../components/privacy/PrivacyContact.astro';
     lastGLANCE's details, including phone contacts, People, sync and its
     connections to other GLANCE Apps, are in the{' '}
     <a href="/lastglance/privacy">lastGLANCE privacy policy</a>.
+  </p>
+
+  <h2 id="lifeglance">lifeGLANCE</h2>
+  <p>
+    On iPhone and iPad, lifeGLANCE syncs your timeline through your own iCloud
+    account, as described above, stored as a file in lifeGLANCE's folder there
+    and protected by Apple's iCloud encryption rather than the app's
+    passphrase-based encryption. Photos, audio and video attached to milestones
+    are not included. If you turn on the dayGLANCE integration and choose iCloud
+    as its transport, the goals and updates it exchanges with dayGLANCE and
+    lastGLANCE travel through a shared folder in dayGLANCE's iCloud storage in
+    your account, also protected by Apple's iCloud encryption rather than your
+    passphrase. GLANCE Apps cannot see your iCloud data; Apple's privacy policy
+    governs data stored in iCloud.
   </p>
 
   <h2>Data we do not collect</h2>

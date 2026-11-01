@@ -8,7 +8,7 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
 <ProseLayout
   title="lastGLANCE Privacy Policy"
   description="How lastGLANCE handles your data. Your chores and people stay on your device: no accounts, no analytics, and nothing sent to us."
-  lastUpdated="October 16, 2026"
+  lastUpdated="November 1, 2026"
 >
   <p class="lead">
     lastGLANCE tracks when you last did recurring chores and, with People, when
@@ -81,11 +81,24 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     lastGLANCE can sync to destinations you configure: a WebDAV server (such as
     Nextcloud), a GLANCEvault instance, or a folder that a sync tool you choose
     (such as Syncthing, Nextcloud, Google Drive, Dropbox, OneDrive or
-    FolderSync) keeps in step across your devices. Sync is off by default. Your
-    People data travels as its own file or vault collection, alongside your
-    chores, and uses the same encryption as your chores.
+    FolderSync) keeps in step across your devices. On iPhone and iPad it also
+    syncs through your own iCloud account, which is on by default so your
+    devices stay in step with nothing to set up; every other destination is off
+    until you set it up. Your People data travels as its own file or vault
+    collection, alongside your chores, and uses the same encryption as your
+    chores.
   </p>
   <ul>
+    <li>
+      iCloud (iPhone and iPad): your chores and People are stored as files in
+      lastGLANCE's folder in your personal iCloud account, protected by Apple's
+      iCloud encryption rather than the app's passphrase-based encryption. Each
+      device has its own switch in Cloud Sync; turning it off stops that device
+      reading or writing iCloud and leaves the copy there for your other
+      devices. When a fresh install finds your data in iCloud, it asks before
+      restoring it. GLANCE Apps cannot see your iCloud data; Apple's privacy
+      policy governs data stored in iCloud.
+    </li>
     <li>
       GLANCEvault: your data is always encrypted on your device before it is
       sent. The server stores encrypted content only.
@@ -137,7 +150,10 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
   </ul>
   <p>
     These messages use the GLANCEintents protocol and can be encrypted with your
-    sync passphrase.
+    sync passphrase. On iPhone and iPad they can also travel through iCloud, in
+    a shared folder in dayGLANCE's iCloud storage in your account, if you turn
+    that on in Integrations; messages sent that way are protected by Apple's
+    iCloud encryption rather than your passphrase.
   </p>
 
   <h3>Notifications and widgets</h3>
@@ -155,6 +171,7 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     to use:
   </p>
   <ul>
+    <li>Apple iCloud (iPhone and iPad), your own account</li>
     <li>Your WebDAV / Nextcloud sync server</li>
     <li>A GLANCEvault instance you run</li>
     <li>The tool that keeps your sync folder in step, if you use folder sync</li>
