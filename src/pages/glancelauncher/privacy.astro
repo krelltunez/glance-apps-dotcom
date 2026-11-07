@@ -1,0 +1,145 @@
+---
+import ProseLayout from '../../layouts/ProseLayout.astro';
+import ControllerIdentity from '../../components/privacy/ControllerIdentity.astro';
+import ChildrensPrivacy from '../../components/privacy/ChildrensPrivacy.astro';
+import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
+---
+
+<ProseLayout
+  title="GLANCElauncher Privacy Policy"
+  description="How GLANCElauncher handles your data. It has no internet access: everything it reads stays on your phone, with no accounts, no analytics, and nothing sent to us."
+  lastUpdated="November 6, 2026"
+>
+  <p class="lead">
+    GLANCElauncher is a home screen app for Android. It does not collect, store
+    or share your personal data. It has no internet permission, so it cannot
+    send anything off your phone. This policy explains what GLANCElauncher reads
+    on your phone, why, and what it keeps.
+  </p>
+
+  <ControllerIdentity>
+    <p>
+      This policy covers GLANCElauncher (Android package
+      app.glance.launcher) specifically. For our publisher-level
+      practices and the glance-apps.com website, see the{' '}
+      <a href="/privacy">GLANCE Apps privacy policy</a>.
+    </p>
+  </ControllerIdentity>
+
+  <h2>Data we do not collect</h2>
+  <ul>
+    <li>We do not collect personal information.</li>
+    <li>We do not use analytics, advertising or tracking.</li>
+    <li>We do not have user accounts.</li>
+    <li>
+      GLANCElauncher has no internet permission. Neither the app nor anything
+      built into it can send data off your phone, to us or to anyone else.
+    </li>
+  </ul>
+
+  <h2>Data the app accesses</h2>
+  <p>
+    Everything below is used only on your phone, to show your home screen.
+    Features marked optional are off until you turn them on, and the launcher
+    works without them.
+  </p>
+
+  <h3>Installed apps</h3>
+  <p>
+    GLANCElauncher lists the apps installed on your phone so you can open,
+    search, pin and uninstall them. Listing and opening apps is what a home
+    screen does, which is why it can see every installed app.
+  </p>
+
+  <h3>App usage (optional)</h3>
+  <p>
+    If you grant usage access in Android's settings, the dock's recent apps can
+    include apps you opened from elsewhere. GLANCElauncher reads which apps were
+    used in the last two days, and nothing else.
+  </p>
+
+  <h3>Notification access (optional)</h3>
+  <p>
+    If you grant notification access, apps with unread notifications show a
+    dot. GLANCElauncher checks which app posted a notification and whether it
+    has any text. It does not keep or show what a notification says.
+  </p>
+
+  <h3>Contacts (optional)</h3>
+  <p>
+    With Contacts in search turned on, search can find your contacts.
+    GLANCElauncher reads contact names, and a contact's phone number when you
+    choose to call or text them from search. It asks for contacts permission
+    only when you turn the setting on, and never changes your contacts.
+  </p>
+
+  <h3>Microphone (optional)</h3>
+  <p>
+    The microphone in the search bar turns what you say into a search.
+    GLANCElauncher uses your phone's on-device speech recognition where the
+    phone has it, and otherwise asks Android's speech recognizer to work
+    offline. That recognizer is part of Android or another app on your phone,
+    and its own privacy terms apply to it. GLANCElauncher receives only the
+    text. It asks for microphone permission the first time you tap the
+    microphone.
+  </p>
+
+  <h3>Accessibility service: double-tap to lock (optional)</h3>
+  <p>
+    With Double-tap to lock turned on, double-tapping an empty part of the home
+    screen locks your phone. Android lets a home app lock the screen, with
+    fingerprint and face unlock still working, only through an accessibility
+    service, and GLANCElauncher's service does that one thing. It receives no
+    accessibility events, cannot read what is on your screen or what you type,
+    and collects nothing. GLANCElauncher explains this and asks before
+    Android's Accessibility settings open, and you turn the service on there.
+  </p>
+
+  <h3>dayGLANCE and lastGLANCE</h3>
+  <p>
+    If you have dayGLANCE or lastGLANCE installed, GLANCElauncher shows your
+    day, tasks and chores from them, and passes back what you do on the home
+    screen, such as completing a task or adding one. This goes directly between
+    the apps on your phone, through Android permissions that only the genuine
+    GLANCE apps hold. What those apps do with it is covered by the{' '}
+    <a href="/dayglance/privacy">dayGLANCE</a> and{' '}
+    <a href="/lastglance/privacy">lastGLANCE</a> privacy policies.
+  </p>
+
+  <h3>Handing you to other apps</h3>
+  <p>
+    Some features open another app, which then works under its own privacy
+    terms: web search opens your browser with your search, the clock opens your
+    clock app, calling or texting a contact opens your dialer or messaging app,
+    and a long press on the microphone opens dayGLANCE's voice capture.
+  </p>
+
+  <h2>Data stored on your device</h2>
+  <p>
+    GLANCElauncher keeps its settings (theme, layout, pinned apps and the like)
+    and a short queue of home screen actions waiting for dayGLANCE or
+    lastGLANCE to confirm them. Both stay in the app's private storage on your
+    phone. Your platform's backup (Google Backup) may include them if you use
+    it. Export settings saves your settings to a file in a place you choose;
+    nothing is exported unless you do it. Uninstalling GLANCElauncher deletes
+    everything it stored on your phone.
+  </p>
+
+  <h2>Third-party services</h2>
+  <p>
+    GLANCElauncher does not integrate with any third-party analytics,
+    advertising or data brokers, and it connects to no service on the internet.
+    The only other software involved is what is already on your phone: Android
+    itself, its speech recognizer, and the apps you open from the launcher.
+  </p>
+
+  <ChildrensPrivacy />
+
+  <h2>Changes to this policy</h2>
+  <p>
+    If GLANCElauncher starts using data differently, we will update this policy
+    and its "Last updated" date above first.
+  </p>
+
+  <PrivacyContact />
+</ProseLayout>
