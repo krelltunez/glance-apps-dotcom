@@ -8,7 +8,7 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
 <ProseLayout
   title="lastGLANCE Privacy Policy"
   description="How lastGLANCE handles your data. Your chores and people stay on your device: no accounts, no analytics, and nothing sent to us."
-  lastUpdated="November 1, 2026"
+  lastUpdated="November 14, 2026"
 >
   <p class="lead">
     lastGLANCE tracks when you last did recurring chores and, with People, when
@@ -37,8 +37,8 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     Note for the web app: the web version of lastGLANCE may relay WebDAV
     requests through a stateless proxy we host, because browsers block many
     direct requests. Your server address, credentials and data pass through it in
-    transit and are never stored or logged. The Android and iOS apps connect to
-    your server directly.
+    transit and are never stored or logged. The Android, iOS and desktop apps
+    connect to your server directly.
   </p>
 
   <h2>Data the app accesses</h2>
@@ -81,8 +81,8 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     lastGLANCE can sync to destinations you configure: a WebDAV server (such as
     Nextcloud), a GLANCEvault instance, or a folder that a sync tool you choose
     (such as Syncthing, Nextcloud, Google Drive, Dropbox, OneDrive or
-    FolderSync) keeps in step across your devices. On iPhone and iPad it also
-    syncs through your own iCloud account, which is on by default so your
+    FolderSync) keeps in step across your devices. On iPhone, iPad and Mac it
+    also syncs through your own iCloud account, which is on by default so your
     devices stay in step with nothing to set up; every other destination is off
     until you set it up. Your People data travels as its own file or vault
     collection, alongside your chores, and uses the same encryption as your
@@ -90,7 +90,7 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
   </p>
   <ul>
     <li>
-      iCloud (iPhone and iPad): your chores and People are stored as files in
+      iCloud (iPhone, iPad and Mac): your chores and People are stored as files in
       lastGLANCE's folder in your personal iCloud account, protected by Apple's
       iCloud encryption rather than the app's passphrase-based encryption. Each
       device has its own switch in Cloud Sync; turning it off stops that device
@@ -116,9 +116,12 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
   </ul>
   <p>
     Your encryption passphrase is never stored. The key derived from it is kept
-    on your device (in the Android Keystore on Android) so you are not asked for
-    it on every launch. If you forget your passphrase, encrypted data cannot be
-    recovered.
+    on your device in its secure storage (the Android Keystore, the iOS
+    Keychain, the macOS Keychain, Windows' protected storage, or the Linux
+    keyring) so you are not asked for it on every launch. Where no secure
+    storage is available (the web app, or Linux without a keyring), it is kept
+    in the app's local storage. If you forget your passphrase, encrypted data
+    cannot be recovered.
   </p>
   <p>
     Household: if you share lastGLANCE with your household, the members' display
@@ -150,7 +153,7 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
   </ul>
   <p>
     These messages use the GLANCEintents protocol and can be encrypted with your
-    sync passphrase. On iPhone and iPad they can also travel through iCloud, in
+    sync passphrase. On iPhone, iPad and Mac they can also travel through iCloud, in
     a shared folder in dayGLANCE's iCloud storage in your account, if you turn
     that on in Integrations; messages sent that way are protected by Apple's
     iCloud encryption rather than your passphrase.
@@ -164,6 +167,82 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     that the app saves on your device. None of this is sent anywhere.
   </p>
 
+  <h3>Local AI assistants (MCP server)</h3>
+  <p>
+    The lastGLANCE desktop app (macOS, Windows and Linux) includes an optional
+    local server built on the Model Context Protocol (MCP), an open standard
+    that lets AI assistant applications on the same computer (such as Claude
+    Desktop or Claude Code) read your lastGLANCE data and, if you allow it, make
+    changes. It is off by default. In Settings, then Integrations, then On this
+    computer, you choose what it may read (Chores, or Chores and People) and,
+    separately, whether it may make changes. lastGLANCE shows you an
+    explanation and asks you to confirm before each of these takes effect. The
+    server listens only on your own computer (127.0.0.1) and is never reachable
+    from the network. Applications connect with an access token that lastGLANCE
+    generates; you can replace it at any time, which disconnects every
+    application that had the old one.
+  </p>
+  <p>
+    With Chores, an application you connect can read your chores, their
+    categories and details, and their completion history, including any notes on
+    completions. If you share lastGLANCE with your household, it can also read
+    the names of the other members and see who a chore is assigned to. With
+    Chores and People, it can also read your People: their names and nicknames,
+    circles, dates such as birthdays, the notes you keep about them, and the
+    contacts you have logged with them, including any notes. People is a
+    separate choice because it holds information about other people. A
+    connected application cannot read phone numbers, email addresses or contact
+    photos, which lastGLANCE does not store.
+  </p>
+  <p>
+    With changes allowed, a connected application can mark chores done, add and
+    edit chores and categories, add and edit people and their dates, log
+    contacts, and organize circles. It can also send a chore to dayGLANCE as a
+    task, only while your dayGLANCE connection is on: the task travels the same
+    way as any chore lastGLANCE sends to dayGLANCE, through the sync destination
+    you set up for it (see Connections to other GLANCE Apps and automation),
+    and nothing is sent to GLANCE Apps. It can never delete anything. It can
+    make at most 30 changes a minute, and the changes it has made in lastGLANCE
+    since lastGLANCE last started are listed in Settings, where you can undo
+    them; a chore it sent to dayGLANCE is removed in dayGLANCE.
+  </p>
+  <p>
+    On macOS and Windows, Set up Claude Desktop adds an entry for lastGLANCE to
+    Claude Desktop's settings on your computer and leaves its other entries
+    alone. While the server is on, lastGLANCE keeps its port and access token in
+    a file in its own data folder on your computer, so a connected application
+    can find it.
+  </p>
+  <p>
+    Assistant applications typically transmit what they read to third-party AI
+    providers over the internet. lastGLANCE itself transmits nothing. The
+    connection is local, and any data that leaves your device is sent by the
+    client application you chose, installed, and configured, not by lastGLANCE.
+    lastGLANCE has no relationship with, and no visibility into, those
+    providers, and cannot see, limit, or audit what a connected client does with
+    data it has read. This is outside the scope of lastGLANCE's own encryption
+    and no-server-access guarantees, which cover how lastGLANCE stores and syncs
+    your data, not what an application you authorized does after reading it.
+    You are responsible for reviewing the privacy policy of any client you
+    connect (and the AI provider behind it).
+  </p>
+
+  <h3>Stream Deck</h3>
+  <p>
+    The lastGLANCE desktop app can work with an Elgato Stream Deck through the
+    lastGLANCE Stream Deck plugin. This is off by default; you turn it on in
+    Settings, then Integrations, then On this computer. While it is on,
+    lastGLANCE listens only on your own computer (127.0.0.1) and gives the
+    plugin what its keys show: your chores' names and icons and how long since
+    each was done, the person at the top of Reach out, and your next birthday or
+    date. From a key, the plugin can mark a chore done and open lastGLANCE at a
+    chore, a person, or the new-chore form. The plugin runs inside Elgato's
+    Stream Deck software on your computer, and neither lastGLANCE nor the plugin
+    sends this data over the internet. As with any local connection, other
+    software running on your computer could also connect while it is on.
+    Elgato's privacy policy governs the Stream Deck software.
+  </p>
+
   <h2>Third-party services</h2>
   <p>
     lastGLANCE does not integrate with any third-party analytics, advertising,
@@ -171,20 +250,42 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     to use:
   </p>
   <ul>
-    <li>Apple iCloud (iPhone and iPad), your own account</li>
+    <li>Apple iCloud (iPhone, iPad and Mac), your own account</li>
     <li>Your WebDAV / Nextcloud sync server</li>
     <li>A GLANCEvault instance you run</li>
     <li>The tool that keeps your sync folder in step, if you use folder sync</li>
     <li>Your phone's dialer, messaging and mail apps, when you tap Call, Text or Email</li>
-    <li>Google Play (purchases, on the Google Play version only)</li>
+    <li>
+      Any MCP client application you connect, only if you enable the optional
+      MCP server in the desktop app: the client reads lastGLANCE data locally and
+      commonly transmits what it reads to its own AI provider
+    </li>
+    <li>
+      Elgato Stream Deck software, only if you use the lastGLANCE Stream Deck
+      plugin: the data it shows stays on your computer
+    </li>
+    <li>Apple App Store or Google Play (purchases)</li>
+    <li>RevenueCat (purchase status, on Apple platforms only)</li>
+    <li>
+      GitHub (api.github.com): the desktop app downloaded from GitHub checks for
+      new releases; no personal data is sent
+    </li>
   </ul>
 
   <h2>Purchases</h2>
   <p>
-    The Google Play version offers an optional unlock, processed entirely by
-    Google Play. We do not see or store your payment information. Purchase status
-    is checked on your device through Google Play and is not sent to us. Google's
-    privacy policy governs payment processing.
+    lastGLANCE offers an optional unlock. On Android it is processed entirely by
+    Google Play; on iPhone, iPad and the Mac App Store version it is processed
+    entirely by the Apple App Store. We do not see or store your payment
+    information. On Android, purchase status is checked on your device through
+    Google Play and is not sent to us. On Apple platforms, lastGLANCE uses
+    RevenueCat to manage the unlock: RevenueCat receives an anonymized app-user
+    identifier and your Apple purchase receipt, from which it determines whether
+    you have unlocked the app. It does not receive your name, your app content,
+    or other personally identifying information. The versions of lastGLANCE
+    downloaded from GitHub (Android and desktop) and the web app have no
+    paywall. The applicable store's privacy policy governs payment processing,
+    and RevenueCat's privacy policy governs its handling of this data.
   </p>
 
   <ChildrensPrivacy />
