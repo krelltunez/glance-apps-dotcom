@@ -197,9 +197,14 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
   <p>
     With changes allowed, a connected application can mark chores done, add and
     edit chores and categories, add and edit people and their dates, log
-    contacts, and organize circles. It can never delete anything. It can make at
-    most 30 changes a minute, and the changes it has made since lastGLANCE last
-    started are listed in Settings, where you can undo them.
+    contacts, and organize circles. It can also send a chore to dayGLANCE as a
+    task, only while your dayGLANCE connection is on: the task travels the same
+    way as any chore lastGLANCE sends to dayGLANCE, through the sync destination
+    you set up for it (see Connections to other GLANCE Apps and automation),
+    and nothing is sent to GLANCE Apps. It can never delete anything. It can
+    make at most 30 changes a minute, and the changes it has made in lastGLANCE
+    since lastGLANCE last started are listed in Settings, where you can undo
+    them; a chore it sent to dayGLANCE is removed in dayGLANCE.
   </p>
   <p>
     On macOS and Windows, Set up Claude Desktop adds an entry for lastGLANCE to
