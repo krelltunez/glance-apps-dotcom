@@ -8,7 +8,7 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
 <ProseLayout
   title="dayGLANCE Privacy Policy"
   description="How dayGLANCE handles your data. A local-first, privacy-first day planner: we do not store your data, collect analytics, or require accounts."
-  lastUpdated="September 27, 2026"
+  lastUpdated="November 14, 2026"
 >
   <p class="lead">
     dayGLANCE is a local-first, privacy-first day planner. We do not store your
@@ -242,6 +242,23 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     the AI provider behind it).
   </p>
 
+  <h3>Stream Deck</h3>
+  <p>
+    The dayGLANCE desktop app can work with an Elgato Stream Deck through the
+    dayGLANCE Stream Deck plugin. This is off by default; you turn it on in
+    Settings, then Local Integrations. While it is on, dayGLANCE listens only on
+    your own computer (127.0.0.1) and gives the plugin what its keys show: the
+    titles, times and colors of today's and tomorrow's tasks and events, your
+    habits and today's counts, your next routine, goal and project progress, and
+    the state of a focus or HyperGLANCE session. From a key, the plugin can
+    complete a task or routine, count a habit, and start, skip or stop a focus or
+    HyperGLANCE session. The plugin runs inside Elgato's Stream Deck software on
+    your computer, and neither dayGLANCE nor the plugin sends this data over the
+    internet. As with any local connection, other software running on your
+    computer could also connect while it is on. Elgato's privacy policy governs
+    the Stream Deck software.
+  </p>
+
   <h2>Third-party services</h2>
   <p>
     dayGLANCE does not integrate with any third-party analytics, advertising, or
@@ -258,6 +275,10 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
       Any MCP client application you connect, only if you enable the optional
       MCP server: the client reads dayGLANCE data locally and commonly transmits
       what it reads to its own AI provider
+    </li>
+    <li>
+      Elgato Stream Deck software, only if you use the dayGLANCE Stream Deck
+      plugin: the data it shows stays on your computer
     </li>
     <li>Apple App Store or Google Play (purchase verification)</li>
     <li>RevenueCat (subscription entitlement management, on Apple platforms only)</li>
