@@ -1,0 +1,207 @@
+---
+import ProseLayout from '../../layouts/ProseLayout.astro';
+import ControllerIdentity from '../../components/privacy/ControllerIdentity.astro';
+import ChildrensPrivacy from '../../components/privacy/ChildrensPrivacy.astro';
+import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
+---
+
+<ProseLayout
+  title="thingGLANCE Privacy Policy"
+  description="How thingGLANCE handles your data. Your things, plans and dates stay on your device: no accounts, no analytics, and nothing sent to us."
+  lastUpdated="November 15, 2026"
+>
+  <p class="lead">
+    thingGLANCE keeps track of the dates attached to the things you own:
+    warranties, subscriptions, support windows and planned replacements.
+    Everything you enter (your things, their coverage, your plans, what they
+    cost, and the names of the people in your household) is stored on your
+    device. This policy explains what thingGLANCE accesses, where your data can
+    go, and who controls it.
+  </p>
+
+  <ControllerIdentity>
+    <p>
+      This policy covers thingGLANCE (Android package com.thingglance.app, and
+      its web app) specifically. For our publisher-level practices and the
+      glance-apps.com website, see the{' '}
+      <a href="/privacy">GLANCE Apps privacy policy</a>.
+    </p>
+  </ControllerIdentity>
+
+  <h2>Data we do not collect</h2>
+  <ul>
+    <li>We do not collect personal information.</li>
+    <li>We do not use analytics, advertising, tracking or crash reporting.</li>
+    <li>We do not have user accounts.</li>
+    <li>
+      We cannot read anything you sync. It is encrypted on your device before
+      it leaves, with a key made from a passphrase only you know.
+    </li>
+  </ul>
+  <p>
+    thingGLANCE does not ask for your location, contacts, camera, photos,
+    microphone or files.
+  </p>
+
+  <h2>Data the app accesses</h2>
+  <p>
+    Nothing below reaches GLANCE Apps. Sync, the connections to other apps and
+    automation are off until you turn them on. The web lookup is on, and is
+    used only when you use it.
+  </p>
+
+  <h3>Web lookup</h3>
+  <p>
+    When you add a thing, you can type its name into the lookup box to have
+    thingGLANCE fill in a photo, specifications, a release date and the date
+    its security updates end. To do that, the name you type is sent to
+    Wikipedia, and thingGLANCE asks endoflife.date about the product it
+    matches. Nothing else is sent with it: not your other things, and nothing
+    that identifies you beyond what any request on the internet carries, such
+    as your IP address.
+  </p>
+  <ul>
+    <li>
+      It happens only when you type into the lookup box. Adding a thing by
+      hand sends nothing.
+    </li>
+    <li>
+      A photo found this way is not copied into the app. It is loaded from
+      Wikimedia's servers when the thing is shown.
+    </li>
+    <li>
+      A switch in Settings turns the web lookup off altogether.
+    </li>
+  </ul>
+  <p>
+    Wikipedia is run by the Wikimedia Foundation, and endoflife.date is an
+    independent public project. Their own privacy policies govern what they do
+    with a request.
+  </p>
+
+  <h3>Sync</h3>
+  <p>
+    thingGLANCE syncs only through GLANCEvault, and only if you connect it to
+    one. Sync is off until you do.
+  </p>
+  <ul>
+    <li>
+      Your data is always encrypted on your device before it is sent, with a
+      key made from a sync passphrase you choose. The server stores encrypted
+      content only. It never has your things, plans, dates, amounts, household
+      names or passphrase in a form it can read.
+    </li>
+    <li>
+      To route and merge changes, the server does see an opaque identifier for
+      each item and when it was last changed, along with the account and device
+      credentials you connected with.
+    </li>
+    <li>
+      Your passphrase is never stored. The key made from it is kept on your
+      device (protected by the Android Keystore on Android) so you are not
+      asked for it on every launch. If you forget your passphrase, synced data
+      cannot be recovered.
+    </li>
+  </ul>
+  <p>
+    Household: the names of your household's members are synced too, encrypted
+    in the same way, so that your other devices and other GLANCE Apps on the
+    same vault recognize the same people. An item you mark private is hidden on
+    other members' devices; it is still synced, encrypted, to the vault your
+    household shares.
+  </p>
+
+  <h3>Connections to other GLANCE Apps and automation</h3>
+  <p>
+    These send nothing to GLANCE Apps.
+  </p>
+  <ul>
+    <li>
+      dayGLANCE (off by default): thingGLANCE can send a date to dayGLANCE as a
+      task, and clear the date when the task is completed there. These
+      messages use the GLANCEintents protocol, travel through your vault, and
+      are always encrypted with your sync passphrase.
+    </li>
+    <li>
+      GLANCElauncher (Android): if GLANCElauncher is installed, it can show
+      your dates, things and plan charges on your home screen and pass back
+      what you do there, such as clearing a date. This goes directly between
+      the two apps on your phone, through an Android permission that only the
+      genuine GLANCElauncher holds. See the{' '}
+      <a href="/glancelauncher/privacy">GLANCElauncher privacy policy</a>.
+    </li>
+    <li>
+      Automation apps such as Tasker (Android, off by default): other apps on
+      your phone can ask thingGLANCE to add a thing, a plan or coverage, clear
+      a date or open a screen, and can read a summary of what is coming up.
+      While this is on, any app installed on your phone can use it. Nothing
+      leaves your phone through it.
+    </li>
+    <li>
+      Sharing into thingGLANCE (Android): text you share to thingGLANCE from
+      another app, such as a product's name, is used to start a new thing and
+      goes nowhere else.
+    </li>
+  </ul>
+
+  <h3>Notifications, widgets and Quick Settings tiles</h3>
+  <p>
+    Reminders are scheduled on your device. Home screen widgets and Quick
+    Settings tiles read a summary of your dates, things and plan charges that
+    the app saves on your device, and a background refresh keeps that summary
+    current without the app being opened. None of this is sent anywhere,
+    except that a refresh also syncs with your vault if you have connected one.
+  </p>
+
+  <h2>Data stored on your device</h2>
+  <p>
+    Your data is kept in the app's private storage. On Android, thingGLANCE
+    keeps it out of your platform's automatic backup (Google Backup): moving to
+    a new phone is done through your vault, or with a backup file you export
+    from Settings and import again. Nothing is exported unless you do it.
+    Uninstalling thingGLANCE deletes everything it stored on your phone.
+  </p>
+  <p>
+    One small record is the exception. A copy of thingGLANCE installed from
+    Google Play notes that it was bought: the store's name, the date Android
+    first installed the app, and the app's version. It holds nothing about you
+    or your payment. It is left in your own device backup, and synced to your
+    vault if you use one, so that it follows you to a new phone. The app does
+    not use it to allow or refuse anything.
+  </p>
+  <p>
+    In the web app, your data is kept in your browser's storage on that
+    device. Clearing your browser's site data removes it.
+  </p>
+
+  <h2>Third-party services</h2>
+  <p>
+    thingGLANCE does not integrate with any third-party analytics, advertising,
+    or data brokers. The only third-party services involved are those you
+    choose to use:
+  </p>
+  <ul>
+    <li>Wikipedia and Wikimedia (web lookup, and the photos it finds)</li>
+    <li>endoflife.date (web lookup)</li>
+    <li>The GLANCEvault server you connect to, if you turn on sync</li>
+    <li>Google Play (the purchase, on the Google Play version only)</li>
+  </ul>
+
+  <h2>Purchases</h2>
+  <p>
+    The Google Play version is a paid app, bought once. The purchase is
+    processed entirely by Google Play. We do not see or store your payment
+    information, and the app has no subscriptions or in-app purchases. Google's
+    privacy policy governs payment processing.
+  </p>
+
+  <ChildrensPrivacy />
+
+  <h2>Changes to this policy</h2>
+  <p>
+    If this policy changes materially, we will update the "Last updated" date
+    above and note the change in the app's release notes.
+  </p>
+
+  <PrivacyContact />
+</ProseLayout>
