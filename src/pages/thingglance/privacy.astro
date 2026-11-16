@@ -21,8 +21,9 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
 
   <ControllerIdentity>
     <p>
-      This policy covers thingGLANCE (Android package com.thingglance.app, and
-      its web app) specifically. For our publisher-level practices and the
+      This policy covers thingGLANCE specifically: the Android, iPhone and iPad
+      apps (com.thingglance.app), the desktop apps for macOS, Windows and Linux,
+      and the web app. For our publisher-level practices and the
       glance-apps.com website, see the{' '}
       <a href="/privacy">GLANCE Apps privacy policy</a>.
     </p>
@@ -39,8 +40,9 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     </li>
   </ul>
   <p>
-    thingGLANCE does not ask for your location, contacts, camera, photos,
-    microphone or files.
+    thingGLANCE does not ask for your location, contacts, camera, photos or
+    microphone. It reads or writes a file only when you export or import a
+    backup yourself.
   </p>
 
   <h2>Data the app accesses</h2>
@@ -98,9 +100,12 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     </li>
     <li>
       Your passphrase is never stored. The key made from it is kept on your
-      device (protected by the Android Keystore on Android) so you are not
-      asked for it on every launch. If you forget your passphrase, synced data
-      cannot be recovered.
+      device in its secure storage (the Android Keystore, the iOS Keychain,
+      the macOS Keychain, Windows' protected storage, or the Linux keyring) so
+      you are not asked for it on every launch. Where no secure storage is
+      available (the web app, or Linux without a keyring), it is kept in the
+      app's local storage. If you forget your passphrase, synced data cannot
+      be recovered.
     </li>
   </ul>
   <p>
@@ -138,19 +143,96 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
       leaves your phone through it.
     </li>
     <li>
-      Sharing into thingGLANCE (Android): text you share to thingGLANCE from
-      another app, such as a product's name, is used to start a new thing and
-      goes nowhere else.
+      Sharing into thingGLANCE (Android, iPhone and iPad): text or a link you
+      share to thingGLANCE from another app, such as a product's page, is used
+      to name a new thing and goes nowhere else. Nothing is added until you
+      save it.
+    </li>
+    <li>
+      Siri, Spotlight and Shortcuts (iPhone and iPad): thingGLANCE offers a
+      few shortcuts, such as asking what is next or settling a date. They are
+      answered on your device from the summary the app saved there. What
+      thingGLANCE hands to iOS is the answer shown or spoken to you and, when
+      a shortcut asks which date you mean, the names of the dates waiting. If
+      you ask through Siri, Apple handles your request under its own privacy
+      policy.
     </li>
   </ul>
 
-  <h3>Notifications, widgets and Quick Settings tiles</h3>
+  <h3>Local AI assistants (MCP server)</h3>
   <p>
-    Reminders are scheduled on your device. Home screen widgets and Quick
-    Settings tiles read a summary of your dates, things and plan charges that
-    the app saves on your device, and a background refresh keeps that summary
-    current without the app being opened. None of this is sent anywhere,
-    except that a refresh also syncs with your vault if you have connected one.
+    The thingGLANCE desktop app (macOS, Windows and Linux) includes an optional
+    local server built on the Model Context Protocol (MCP), an open standard
+    that lets AI assistant applications on the same computer (such as Claude
+    Code) read your thingGLANCE data and, if you allow it, make changes. It is
+    off by default. In Settings, then Integrations, then On this computer, you
+    turn on reading and, separately, changes. thingGLANCE shows you an
+    explanation and asks you to confirm before each of these takes effect. The
+    server listens only on your own computer (127.0.0.1) and is never reachable
+    from the network. Applications connect with an access token that
+    thingGLANCE generates; you can replace it at any time, which disconnects
+    every application that had the old one.
+  </p>
+  <p>
+    With reading on, an application you connect can read your things and their
+    details, notes and coverage, your plans and what they cost, and the dates
+    ahead and those waiting for a decision. If you share thingGLANCE with your
+    household, it can also read the names of the other members and see what
+    each owns, pays for or deals with. It reads as the member the computer
+    belongs to: another member's private items are not shown to it.
+  </p>
+  <p>
+    With changes allowed, a connected application can add things, coverage and
+    plans, edit things and plans, change whose a thing is, and settle a date in
+    your queue. It can never delete anything. It can make at most 30 changes a
+    minute, and the changes it has made since thingGLANCE last started are
+    listed in Settings, where you can undo them.
+  </p>
+  <p>
+    While the server is on, the version downloaded from GitHub keeps its port
+    and access token in a file in its own data folder on your computer, so a
+    connected application can find it.
+  </p>
+  <p>
+    Assistant applications typically transmit what they read to third-party AI
+    providers over the internet. thingGLANCE itself transmits nothing. The
+    connection is local, and any data that leaves your device is sent by the
+    client application you chose, installed, and configured, not by
+    thingGLANCE. thingGLANCE has no relationship with, and no visibility into,
+    those providers, and cannot see, limit, or audit what a connected client
+    does with data it has read. This is outside the scope of thingGLANCE's own
+    encryption and no-server-access guarantees, which cover how thingGLANCE
+    stores and syncs your data, not what an application you authorized does
+    after reading it. You are responsible for reviewing the privacy policy of
+    any client you connect (and the AI provider behind it).
+  </p>
+
+  <h3>Stream Deck</h3>
+  <p>
+    The thingGLANCE desktop app can work with an Elgato Stream Deck through the
+    thingGLANCE Stream Deck plugin. This is off by default; you turn it on in
+    Settings, then Integrations, then On this computer. While it is on,
+    thingGLANCE listens only on your own computer (127.0.0.1) and gives the
+    plugin what its keys show: the dates waiting for a decision and those
+    coming up, what your plans will charge over the next 30 days, and your
+    things' names and how long each has left. From a key, the plugin can mark
+    a date in your queue done and open thingGLANCE at a date, a thing, your
+    plans or the new-thing form. The plugin runs inside Elgato's Stream Deck
+    software on your computer, and neither thingGLANCE nor the plugin sends
+    this data over the internet. As with any local connection, other software
+    running on your computer could also connect while it is on. Elgato's
+    privacy policy governs the Stream Deck software.
+  </p>
+
+  <h3>Notifications, widgets and other surfaces</h3>
+  <p>
+    Reminders are scheduled on your device. Widgets (on the Home Screen and,
+    on iPhone and iPad, the Lock Screen), Android's Quick Settings tiles and
+    the desktop app's tray read a summary of your dates, things and plan
+    charges that the app saves on your device. On Android a background refresh
+    keeps that summary current without the app being opened. None of this is
+    sent anywhere, except that a refresh also syncs with your vault if you
+    have connected one.
   </p>
 
   <h2>Data stored on your device</h2>
@@ -162,12 +244,28 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     Uninstalling thingGLANCE deletes everything it stored on your phone.
   </p>
   <p>
+    On iPhone and iPad, your data is part of your device's own backup (iCloud
+    Backup, or a backup to your computer) if you use one, under Apple's terms.
+    Your vault connection and encryption key are not: they are kept in the
+    Keychain on that device only. Deleting thingGLANCE deletes everything else
+    it stored on the device; iOS can keep Keychain entries after an app is
+    deleted, and thingGLANCE clears any it finds when it is installed again.
+  </p>
+  <p>
+    On a computer, your data is kept in thingGLANCE's data folder in your user
+    account. Removing the app can leave that folder behind; deleting the
+    folder removes the data.
+  </p>
+  <p>
     One small record is the exception. A copy of thingGLANCE installed from
     Google Play notes that it was bought: the store's name, the date Android
     first installed the app, and the app's version. It holds nothing about you
     or your payment. It is left in your own device backup, and synced to your
     vault if you use one, so that it follows you to a new phone. The app does
-    not use it to allow or refuse anything.
+    not use it to allow or refuse anything. A copy installed from the App
+    Store or the Mac App Store notes the same three things, with the date the
+    store gives for the purchase (on a Mac, the day the app first ran there).
+    The desktop apps downloaded from GitHub and the web app record nothing.
   </p>
   <p>
     In the web app, your data is kept in your browser's storage on that
@@ -184,14 +282,32 @@ import PrivacyContact from '../../components/privacy/PrivacyContact.astro';
     <li>Wikipedia and Wikimedia (web lookup, and the photos it finds)</li>
     <li>endoflife.date (web lookup)</li>
     <li>The GLANCEvault server you connect to, if you turn on sync</li>
-    <li>Google Play (the purchase, on the Google Play version only)</li>
+    <li>
+      Google Play or the Apple App Store (the purchase, on the versions from
+      those stores only)
+    </li>
+    <li>
+      Any MCP client application you connect, only if you enable the optional
+      MCP server in the desktop app: the client reads thingGLANCE data locally
+      and may send it to its own AI provider
+    </li>
+    <li>
+      Elgato Stream Deck software, only if you use the thingGLANCE Stream Deck
+      plugin
+    </li>
+    <li>
+      GitHub (api.github.com): the desktop app downloaded from GitHub checks
+      for new releases; no personal data is sent
+    </li>
   </ul>
 
   <h2>Purchases</h2>
   <p>
-    The Google Play version is a paid app, bought once. The purchase is
-    processed entirely by Google Play. We do not see or store your payment
-    information, and the app has no subscriptions or in-app purchases. Google's
+    The versions on Google Play, the App Store and the Mac App Store are paid
+    apps, bought once. The purchase is processed entirely by Google Play or
+    by the Apple App Store. We do not see or store your payment information,
+    and the app has no subscriptions or in-app purchases. The desktop apps
+    downloaded from GitHub and the web app are free. The applicable store's
     privacy policy governs payment processing.
   </p>
 
