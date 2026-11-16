@@ -39,6 +39,18 @@ const apps = [
     accentColor: '#3DDB84',
     icon: '/icons/lastglance-icon.png',
   },
+  {
+    name: 'thingGLANCE',
+    prefix: 'thing',
+    suffix: 'GLANCE',
+    tagline: 'Know what is next for your things.',
+    description:
+      'A tracker for the dates attached to the things you own. Warranties, subscriptions, support windows, and the right moment to buy the next one. Not a home inventory.',
+    href: '/apps/thingglance',
+    status: 'coming-soon',
+    accentColor: '#38BDF8',
+    icon: '/icons/thingglance-icon.png',
+  },
 ] as const;
 ---
 
@@ -68,7 +80,7 @@ const apps = [
       <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-10">
         Our Apps
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         {apps.map((app) => (
           <AppCard {...app} />
         ))}
