@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="thingGLANCE"
+  description="thingGLANCE keeps track of the dates attached to the things you own: warranties, subscriptions, support windows, and the right moment to buy the next one."
+  ogImage="/og/thingglance.svg"
+>
+  <article class="max-w-5xl mx-auto px-6 py-20 md:py-28">
+    <!-- Breadcrumb -->
+    <nav class="mb-10 font-sans text-sm text-glance-dim" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-glance-muted transition-colors">GLANCE Apps</a>
+      <span class="mx-2">/</span>
+      <span class="text-glance-muted">thingGLANCE</span>
+    </nav>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+      <!-- Left column -->
+      <div>
+        <h1 class="font-serif text-5xl md:text-6xl font-semibold leading-none mb-4">
+          <span class="text-glance-muted font-medium">thing</span><span style="color: #38BDF8;" class="tracking-wider font-bold">GLANCE</span>
+        </h1>
+        <p class="text-xl text-glance-muted font-serif italic mb-4">
+          Know what is next for your things.
+        </p>
+
+        <img
+          src="/glanceintents-pill-supports-sky-dark.svg"
+          alt="Supports GLANCEintents"
+          width="244"
+          height="32"
+          class="mb-3"
+        />
+
+        <img
+          src="/glancevault-pill-supports-sky-dark.svg"
+          alt="Supports GLANCEvault"
+          width="232"
+          height="32"
+          class="mb-8"
+        />
+
+        <div class="space-y-5 text-glance-muted font-serif text-lg leading-relaxed mb-6">
+          <p>
+            thingGLANCE keeps track of the dates attached to the things you own.
+            When the warranty lapses. When a plan renews. When security updates
+            stop. When you said you would replace it. Built with the same care
+            as the rest of the GLANCE family.
+          </p>
+          <p>
+            It is not a home inventory. No serial-number spreadsheets, no
+            receipts to scan. Just the handful of things that carry dates, and a
+            short list of the ones that want a decision from you now.
+          </p>
+        </div>
+
+        <!-- Platforms -->
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6 mb-8">
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-3">
+            Platforms
+          </h2>
+          <p class="font-sans text-sm text-glance-muted mb-4">Web (self-host) · Android · iOS · macOS · Windows · Linux</p>
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-3">
+            Languages
+          </h2>
+          <p class="font-sans text-sm text-glance-muted">English</p>
+        </div>
+
+        <!-- Availability -->
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6 mb-5">
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-3">
+            Coming soon
+          </h2>
+          <p class="font-sans text-sm text-glance-muted leading-relaxed">
+            thingGLANCE is in testing on Google Play. The App Store, the Mac App
+            Store and the desktop downloads follow. Until then, the web app can
+            be self-hosted from the source on GitHub.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-6">
+          <a
+            href="https://github.com/krelltunez/thingGLANCE"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-sans text-sm text-glance-muted hover:text-[#38BDF8] transition-colors duration-150"
+          >
+            Source on GitHub →
+          </a>
+        </div>
+      </div>
+
+      <!-- Right column -->
+      <div class="space-y-6">
+        <!-- What it does -->
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-5">
+            What it does
+          </h2>
+          <p class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-3">Core</p>
+          <ul class="space-y-4 font-sans text-sm text-glance-muted mb-5">
+            <li class="flex gap-3">
+              <span style="color: #38BDF8;" class="mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">A decision queue</strong>: Each date joins the queue when there is still time to act on it. A warranty a few weeks out, end of support months out, a trial days out. Settle it, or leave it until you have.</span>
+            </li>
+            <li class="flex gap-3">
+              <span style="color: #38BDF8;" class="mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Warranties and coverage</strong>: Know a warranty is ending while you can still use it. Extended warranties and insurance sit beside the manufacturer's.</span>
+            </li>
+            <li class="flex gap-3">
+              <span style="color: #38BDF8;" class="mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Plans and renewals</strong>: Every subscription, what it adds up to a month and a year, the charges coming, and a flag for the ones to review before they renew.</span>
+            </li>
+            <li class="flex gap-3">
+              <span style="color: #38BDF8;" class="mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Shelf life</strong>: When security updates stop, how much of a thing's life is left, and a plain verdict on where it stands.</span>
+            </li>
+            <li class="flex gap-3">
+              <span style="color: #38BDF8;" class="mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">The horizon</strong>: Every thing as a lane on one time axis. Coverage, support, renewals and your planned replacement, a year or more ahead.</span>
+            </li>
+            <li class="flex gap-3">
+              <span style="color: #38BDF8;" class="mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">An upgrade fund</strong>: What to set aside each month so every replacement is paid for the day it is due.</span>
+            </li>
+            <li class="flex gap-3">
+              <span style="color: #38BDF8;" class="mt-0.5 shrink-0">◆</span>
+              <span><strong class="text-glance-text font-medium">Household</strong>: Say whose a thing is and who deals with it. Keep an item private. Solo users are unaffected.</span>
+            </li>
+          </ul>
+          <div class="border-t border-glance-border pt-5">
+            <p class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-3">Optional</p>
+            <p class="font-sans text-sm text-glance-muted leading-relaxed">
+              Reminders and widgets on your phone. On the desktop, a tray popup,
+              a local server for AI assistants, and a Stream Deck plugin. A web
+              lookup that fills in a product's details from Wikipedia and
+              endoflife.date, used only when you type into it.
+            </p>
+          </div>
+        </div>
+
+        <!-- Cloud Sync -->
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+            Cloud Sync
+          </h2>
+          <p class="font-sans text-sm text-glance-muted leading-relaxed">
+            Optional sync across your devices through GLANCEvault (beta), on a server you run. No GLANCE Apps account. No GLANCE Apps servers. Zero-knowledge encrypted with a passphrase only you know. Off by default.
+          </p>
+        </div>
+
+        <!-- GLANCEintents -->
+        <div class="bg-glance-surface border border-glance-border-dim rounded-xl p-6">
+          <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-4">
+            GLANCEintents
+          </h2>
+          <p class="font-sans text-sm text-glance-muted leading-relaxed">
+            Send a date to your dayGLANCE timeline as a task. Complete it there and the date is settled here. Off by default.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="mt-16 pt-10 section-rule">
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
+        Open Source
+      </h2>
+      <p class="font-sans text-sm text-glance-muted max-w-xl leading-relaxed mb-4">
+        thingGLANCE is open source under the MIT License. Self-host the web app,
+        build from source, or audit the code. Purchases on the app stores support
+        continued development.
+      </p>
+      <a
+        href="https://github.com/krelltunez/thingGLANCE"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 text-sm font-sans thing-accent-link link-underline"
+      >
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true" class="shrink-0 opacity-75">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View on GitHub →
+      </a>
+    </div>
+
+    <div class="mt-10 pt-10 section-rule">
+      <h2 class="text-xs font-sans font-semibold uppercase tracking-widest text-glance-dim mb-6">
+        Privacy
+      </h2>
+      <p class="font-sans text-sm text-glance-muted max-w-xl leading-relaxed mb-4">
+        thingGLANCE stores your data locally on your device. No account required.
+        No data leaves your device without your direction. Your data remains yours.
+      </p>
+      <a href="/thingglance/privacy" class="font-sans text-sm thing-accent-link link-underline">
+        Privacy policy →
+      </a>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .thing-accent-link {
+    color: #38BDF8;
+    text-decoration: underline;
+    text-decoration-color: #38BDF840;
+    text-underline-offset: 3px;
+    transition: color 0.15s, text-decoration-color 0.15s;
+  }
+  .thing-accent-link:hover {
+    text-decoration-color: #38BDF8;
+  }
+</style>
